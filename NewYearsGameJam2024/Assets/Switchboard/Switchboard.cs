@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using IvoryIcycles.SwitchboardInternals;
 using UnityEngine;
 
-public class Switchboard : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+// https://en.wikipedia.org/wiki/Telephone_switchboard
+// https://en.wikipedia.org/wiki/Switchboard_operator
+
+namespace IvoryIcycles
+{
+    public class Switchboard : MonoBehaviour
     {
-        
+        public ConnectionButton[] reqButtons;
+
+        public void PublishConnectionRequest(int button)
+        {
+            reqButtons[button].PublishRequest();
+        }
+
+        /*public void RequestAnswered(ConnectionButton cb)
+        {
+
+        }*/
     }
 }
