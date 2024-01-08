@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 
-namespace IvoryIcycles.SwitchboardInternals
+namespace IvoryIcicles.SwitchboardInternals
 {
 	public enum ConnectionStatus { 
 		IDLE = 0,
@@ -14,10 +13,10 @@ namespace IvoryIcycles.SwitchboardInternals
 	}
 	public class ConnectionButton : MonoBehaviour, IPointerClickHandler
 	{
-		[SerializeField] private Lightbulb lightbulb;
+		[SerializeField] private int id;
+		[SerializeField] private BaseLightbulb lightbulb;
 		[SerializeField] private Switchboard switchboard;
 
-		public UnityEvent OnRequestAnswered;
 
 		private ConnectionStatus _status = ConnectionStatus.IDLE;
 		public ConnectionStatus status
@@ -39,7 +38,7 @@ namespace IvoryIcycles.SwitchboardInternals
 			if (status == ConnectionStatus.PENDING_OPERATOR_ANSWER)
 			{
 				status = ConnectionStatus.ANSWERED_BY_OPERATOR;
-				//switchboard.RequestAnswered(this)
+				switchboard.AnswerRequest(id);
 			}
 		}
 

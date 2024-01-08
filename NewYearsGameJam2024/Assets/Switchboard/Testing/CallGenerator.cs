@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IvoryIcycles.Testing
+namespace IvoryIcicles.Testing
 {
 	public class CallGenerator : MonoBehaviour
 	{
