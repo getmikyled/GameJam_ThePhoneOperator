@@ -1,3 +1,4 @@
+using GetMikyled;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,9 +34,21 @@ public class DialogController : MonoBehaviour
         }
     }
 
+    public void DisplayDialog(Plot plot, int index)
+    {
+        string dialog = "";
+
+        if (plot == Plot.SPY)
+        {
+            dialog = DialogReader.spyDialog.dialog[index].text;
+        }
+
+        if (dialog.Equals("") == false) TypeDialogText(dialog);
+    }
+
     ///-//////////////////////////////////////////////////////////////////
     ///
-    public IEnumerator TypeDialogText(string dialog)
+    private IEnumerator TypeDialogText(string dialog)
     {
         isTyping = true;
 
