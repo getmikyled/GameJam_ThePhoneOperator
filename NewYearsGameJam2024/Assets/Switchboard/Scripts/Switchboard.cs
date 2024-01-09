@@ -41,7 +41,10 @@ namespace IvoryIcicles
 
 		public void ConnectCall(BoardSocket socket)
 		{
-            socket.activeCall = currentActiveCall;
+            Call current = currentActiveCall;
+            if (current == null)
+                return;
+            socket.activeCall = current;
 			socket.activeCall.receptorIsConnected = true;
 		}
 
