@@ -1,5 +1,8 @@
-using IvoryIcicles.SwitchboardInternals;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+using IvoryIcicles.SwitchboardInternals;
 
 
 // https://en.wikipedia.org/wiki/Telephone_switchboard
@@ -9,16 +12,48 @@ namespace IvoryIcicles
 {
     public class Switchboard : MonoBehaviour
     {
-        public ConnectionButton[] reqButtons;
+        public BoardButton[] boardButtons;
+        public BoardSocket[] boardSockets;
 
-        public void PublishConnectionRequest(int buttonId)
+        public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
+
+
+        public void PublishConnectionRequest(Call incommingCall)
         {
-            reqButtons[buttonId].PublishRequest();
+            boardButtons[incommingCall.emisorId].activeCall = incommingCall;
         }
 
-        public void AnswerRequest(int buttonId)
+        public void AnswerCall(BoardButton button)
         {
-            print($"Answered {buttonId}");
+            Call activeCall = button.activeCall;
+            activeCall.operatorConnected = true;
+            activeCall.operatorAnswered = true;
+            print("OPERATOR: Operator. Good morning.");
+            print($"CALLER {activeCall.emisorId}: Hi! I would like to talk to {activeCall.receptorId} please.");
+            print($"OPERATOR: Sure thing! Please hold.");
+        }
+
+        public void ConnectCall(BoardSocket socket)
+		{
+			socket.activeCall.receptorConnected = true;
+		}
+
+        public void DisconnectFromCall(BoardButton button)
+        {
+            button.activeCall.operatorConnected = false;
+        }
+
+        public void DisconnectCall(BoardSocket socket)
+        {
+            socket.activeCall.emisorConnected = false;
+            socket.activeCall.receptorConnected = false;
+            socket.activeCall.operatorConnected = false;
+		}
+
+		public void AnswerCall(BoardSocket socket)
+        {
+            socket.activeCall.receptorConnected = true;
+            socket.activeCall.receptorAnswered = true;
         }
     }
 }

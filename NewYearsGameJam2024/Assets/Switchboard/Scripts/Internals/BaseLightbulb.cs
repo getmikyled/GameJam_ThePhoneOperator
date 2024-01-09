@@ -12,6 +12,7 @@ namespace IvoryIcicles.SwitchboardInternals
 			get => _status;
 			set
 			{
+				if (_status == value) return;
 				_status = value;
 				onStatusChanged();
 			}
