@@ -4,14 +4,14 @@ using UnityEngine.EventSystems;
 
 namespace IvoryIcicles.SwitchboardInternals
 {
-	public class BoardButton : BoardCommsInterfacePart
+	public class BoardButton : BoardCommsInterfacePart, IPointerClickHandler
 	{
 		[SerializeField] private int _callerId;
 
 		public int callerId => _callerId;
 
 
-		public override void OnPointerClick(PointerEventData eventData)
+		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (activeCall == null)
 				return;

@@ -10,11 +10,11 @@
 		public int emisorId { get; private set; }
 		public int receptorId { get; private set; }
 
-		public bool emisorConnected = false;
-		public bool receptorConnected = false;
-		public bool operatorConnected = false;
+		public bool emisorIsConnected = true;
+		public bool receptorIsConnected = false;
+		public bool operatorIsConnected = false;
 		
-		public bool started = false;
+		public bool started = true;
 		public bool operatorAnswered = false;
 		public bool receptorAnswered = false;
 
@@ -31,7 +31,7 @@
 					return CallStatus.AWAITING_OPERATOR;
 				if (!receptorAnswered)
 					return CallStatus.AWAITING_RECEPTOR;
-				if (emisorConnected && receptorConnected)
+				if (emisorIsConnected && receptorIsConnected)
 					return CallStatus.ON_GOING;
 				if (emisorHangUp && receptorHangUp)
 					return CallStatus.FINISHED;

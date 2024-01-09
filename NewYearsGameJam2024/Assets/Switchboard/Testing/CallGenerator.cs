@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 
 namespace IvoryIcicles.Testing
@@ -8,14 +9,15 @@ namespace IvoryIcicles.Testing
 		public Switchboard switchboard;
 
 
-		private float elapsedTime = 0f;
+		private float elapsedTime = 1.5f;
 
 		private void Update()
 		{
-			if (elapsedTime > 1.5f)
+			if (elapsedTime > 2f)
 			{
 				elapsedTime = 0f;
-				//switchboard.PublishConnectionRequest(Random.Range(0, switchboard.boardButtons.Length));
+				var availableButtons = switchboard.allCalls.ToArray();
+				switchboard.PublishConnectionRequest(new Call(0, 5));
 				return;
 			}
 			elapsedTime += Time.deltaTime;

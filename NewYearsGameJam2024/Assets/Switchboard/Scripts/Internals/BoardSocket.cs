@@ -4,27 +4,29 @@ using UnityEngine.EventSystems;
 
 namespace IvoryIcicles.SwitchboardInternals
 {
-	public class BoardSocket : BoardCommsInterfacePart
+	public class BoardSocket : BoardCommsInterfacePart, IPointerClickHandler
 	{
 		[SerializeField] private int _receptorId;
 		public int receptorId => _receptorId;
-		
 
-		public void ConnectWithEmisor(int emisorId)
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			switchboard.ConnectCall(this);
+		}
+
+
+		/*public void ConnectWithEmisor(int emisorId)
 		{
 			if (emisorId == receptorId)
 				throw new System.Exception("RECEPTOR AND EMISOR CAN'T BE THE SAME..");
-		}
-
-		public override void OnPointerClick(PointerEventData eventData)
-		{
-			throw new System.NotImplementedException();
-		}
+		}*/
 
 
 		protected override LightbulbStatus getNextLightbulbStatus()
 		{
-			throw new System.NotImplementedException();
+			if (!activeCall.receptorAnswered)
+				lightbulb.status = LightbulbStatus.BLINKING;
+			return LightbulbStatus.ON;
 		}
 	}
 }

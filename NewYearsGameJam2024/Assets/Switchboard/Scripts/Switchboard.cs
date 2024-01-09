@@ -16,7 +16,7 @@ namespace IvoryIcicles
         public BoardSocket[] boardSockets;
 
         public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
-
+        public Call currentActiveCall => allCalls.Where(c => c.operatorIsConnected).FirstOrDefault();
 
         public void PublishConnectionRequest(Call incommingCall)
         {
@@ -26,34 +26,35 @@ namespace IvoryIcicles
         public void AnswerCall(BoardButton button)
         {
             Call activeCall = button.activeCall;
-            activeCall.operatorConnected = true;
+            activeCall.operatorIsConnected = true;
             activeCall.operatorAnswered = true;
             print("OPERATOR: Operator. Good morning.");
             print($"CALLER {activeCall.emisorId}: Hi! I would like to talk to {activeCall.receptorId} please.");
             print($"OPERATOR: Sure thing! Please hold.");
         }
 
-        public void ConnectCall(BoardSocket socket)
-		{
-			socket.activeCall.receptorConnected = true;
-		}
-
-        public void DisconnectFromCall(BoardButton button)
-        {
-            button.activeCall.operatorConnected = false;
-        }
-
-        public void DisconnectCall(BoardSocket socket)
-        {
-            socket.activeCall.emisorConnected = false;
-            socket.activeCall.receptorConnected = false;
-            socket.activeCall.operatorConnected = false;
-		}
-
 		public void AnswerCall(BoardSocket socket)
+		{
+			socket.activeCall.receptorIsConnected = true;
+			socket.activeCall.receptorAnswered = true;
+		}
+
+		public void ConnectCall(BoardSocket socket)
+		{
+            socket.activeCall = currentActiveCall;
+			socket.activeCall.receptorIsConnected = true;
+		}
+
+		public void DisconnectCall(BoardSocket socket)
+		{
+			socket.activeCall.emisorIsConnected = false;
+			socket.activeCall.receptorIsConnected = false;
+			socket.activeCall.operatorIsConnected = false;
+		}
+
+		public void DisconnectFromCall(BoardButton button)
         {
-            socket.activeCall.receptorConnected = true;
-            socket.activeCall.receptorAnswered = true;
+            button.activeCall.operatorIsConnected = false;
         }
     }
 }

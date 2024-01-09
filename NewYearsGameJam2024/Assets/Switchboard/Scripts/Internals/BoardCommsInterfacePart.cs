@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
 using IvoryIcicles.SwitchboardInternals;
 
 
 namespace IvoryIcicles
 {
-	public abstract class BoardCommsInterfacePart : MonoBehaviour, IPointerClickHandler
+	public abstract class BoardCommsInterfacePart : MonoBehaviour
 	{
 		[SerializeField] protected BaseLightbulb lightbulb;
 		[SerializeField] protected Switchboard switchboard;
@@ -46,9 +45,6 @@ namespace IvoryIcicles
 				}
 			}
 		}
-
-
-		public abstract void OnPointerClick(PointerEventData eventData);
 		
 		protected abstract LightbulbStatus getNextLightbulbStatus();
 
