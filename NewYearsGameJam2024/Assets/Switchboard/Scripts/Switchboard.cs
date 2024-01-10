@@ -16,13 +16,22 @@ namespace IvoryIcicles
         public BoardCable[] boardCables;
         public BoardSocket[] boardSockets;
 
-        public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
-        public Call currentActiveCall => allCalls.Where(c => c.operatorIsConnected).FirstOrDefault();
+        public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
+        public int availableChannelsCount => availableChannels.Count();
+        public IEnumerable<int> availableIndexes => availableChannels.Select(b => b.callerId);
+        public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall).Where(c => c != null);
 
 
-        public void PublishConnectionRequest(Call incommingCall)
+        public bool PublishConnectionRequest(Call incommingCall)
         {
-            boardButtons[incommingCall.emisorId].activeCall = incommingCall;
+            int availablesCount = availableChannelsCount;
+			if (availablesCount == 0)
+            {
+                Debug.LogWarning("Switchboard channels full. Can't publish incomming call.");
+                return false;
+            }
+            availableChannels.ElementAt(Random.Range(0, availablesCount)).activeCall = incommingCall;
+            return true;
         }
 
         public void AnswerCall(BoardButton button)
