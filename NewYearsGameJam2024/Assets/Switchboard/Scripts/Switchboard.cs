@@ -18,6 +18,7 @@ namespace IvoryIcicles
         public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
         public Call currentActiveCall => allCalls.Where(c => c.operatorIsConnected).FirstOrDefault();
 
+
         public void PublishConnectionRequest(Call incommingCall)
         {
             boardButtons[incommingCall.emisorId].activeCall = incommingCall;
@@ -39,12 +40,11 @@ namespace IvoryIcicles
 			socket.activeCall.receptorAnswered = true;
 		}
 
-		public void ConnectCall(BoardSocket socket)
+		public void ConnectCall(BoardSocket socket, BoardCable cable)
 		{
-            Call current = currentActiveCall;
-            if (current == null)
+            if (cable.callerId == socket.receptorId)
                 return;
-            socket.activeCall = current;
+			socket.activeCall = boardButtons[cable.callerId].activeCall;
 			socket.activeCall.receptorIsConnected = true;
 		}
 

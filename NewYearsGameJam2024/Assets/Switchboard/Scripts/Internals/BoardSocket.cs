@@ -11,15 +11,15 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
-			switchboard.ConnectCall(this);
+			//switchboard.ConnectCall(this);
 		}
 
 
-		/*public void ConnectWithEmisor(int emisorId)
+		public void ConnectWithEmisor(int emisorId)
 		{
 			if (emisorId == receptorId)
 				throw new System.Exception("RECEPTOR AND EMISOR CAN'T BE THE SAME..");
-		}*/
+		}
 
 
 		protected override LightbulbStatus getNextLightbulbStatus()
