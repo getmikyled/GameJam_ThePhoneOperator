@@ -29,11 +29,10 @@ namespace IvoryIcicles
 		{
 			if (!grabbed)
 				return;
-			// NEEDS WORK
-			Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
-			Vector3 newPos = cam.ScreenToWorldPoint(mousePos);
-			newPos.z = transform.parent.position.z;
-			transform.position = newPos;
+			Ray r = cam.ScreenPointToRay(Input.mousePosition);
+			Vector3 targetPoint = r.GetPoint(Vector3.Distance(cam.transform.position, transform.position));
+			targetPoint.z = transform.position.z;
+			transform.position = targetPoint;
 		}
 
 		private void Start()

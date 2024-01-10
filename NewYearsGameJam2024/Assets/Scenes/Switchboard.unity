@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17277691, g: 0.2159017, b: 0.2978386, a: 1}
+  m_IndirectSpecularColor: {r: 0.17277655, g: 0.21590099, b: 0.2978375, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Socket - Testing (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -220,6 +225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Socket - Testing (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -303,6 +313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -395,18 +410,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 107184760}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &107184762 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 107184760}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &139906137
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +420,6 @@ GameObject:
   m_Component:
   - component: {fileID: 139906138}
   - component: {fileID: 139906139}
-  - component: {fileID: 139906140}
   m_Layer: 0
   m_Name: Switchboard
   m_TagString: Untagged
@@ -459,28 +461,12 @@ MonoBehaviour:
   boardButtons:
   - {fileID: 672437277}
   - {fileID: 2011613441}
-  - {fileID: 544229963}
-  - {fileID: 107184762}
-  - {fileID: 1771493241}
-  - {fileID: 649998321}
-  - {fileID: 1297968402}
-  - {fileID: 583645825}
-  - {fileID: 1204822703}
-  - {fileID: 2024461669}
-  boardSockets: []
---- !u!114 &139906140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139906137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c748a0ac14ab904491ab23829f29107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchboard: {fileID: 139906139}
+  boardCables:
+  - {fileID: 1496190452}
+  - {fileID: 974193750}
+  boardSockets:
+  - {fileID: 1467246800}
+  - {fileID: 1766311758}
 --- !u!1 &154403809
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +574,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -609,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312258912}
   m_Layer: 0
-  m_Name: Board Plugs
+  m_Name: Board Cables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,6 +704,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -736,6 +732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -828,18 +829,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 544229961}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &544229963 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 544229961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &583645823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,6 +841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -944,18 +938,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 583645823}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &583645825 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 583645823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &649998319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -968,6 +950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -1060,18 +1047,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 649998319}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &649998321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 649998319}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &672437275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1237,6 +1212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Socket - Testing (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1321,6 +1301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Socket - Testing (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1404,6 +1389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Socket - Testing (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
@@ -1549,6 +1539,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1633,6 +1628,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1644,6 +1644,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 974193747}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &974193750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7958355582498530972, guid: e5a94d19f263137439e6ec4b912583bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 974193747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb864c662f969640994082e73cc82ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1118549546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1656,6 +1668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -1821,6 +1838,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1844,6 +1866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -2009,6 +2036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2020,18 +2052,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1200799465}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1204822703 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 1118549546}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1210767038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
@@ -2050,6 +2070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Socket - Testing (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
@@ -2240,6 +2265,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Button - Testing (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
       propertyPath: id
@@ -2331,18 +2361,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1297968400}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1297968402 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 1297968400}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1305680050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2355,6 +2373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Socket - Testing (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
@@ -2500,6 +2523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2511,12 +2539,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1330646089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1467246800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8952111497727043895, guid: a2d122ba3b662ed4abd0154450f92994,
+    type: 3}
+  m_PrefabInstance: {fileID: 6698383710038985875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbd7a3920c7a1540a7f6bddd50dacce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1496190450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1040690939880067426, guid: e5a94d19f263137439e6ec4b912583bf,
     type: 3}
   m_PrefabInstance: {fileID: 8148925402296028470}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1496190452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7958355582498530972, guid: e5a94d19f263137439e6ec4b912583bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8148925402296028470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb864c662f969640994082e73cc82ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1517603205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,6 +2909,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1766311758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8952111497727043895, guid: a2d122ba3b662ed4abd0154450f92994,
+    type: 3}
+  m_PrefabInstance: {fileID: 824688793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbd7a3920c7a1540a7f6bddd50dacce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1771493239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2869,6 +2933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -2961,18 +3030,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1771493239}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1771493241 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 1771493239}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1815367599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3045,6 +3102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Cable - Testing (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3203,6 +3265,51 @@ Transform:
   - {fileID: 1144302771}
   m_Father: {fileID: 139906138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1945731125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945731127}
+  - component: {fileID: 1945731126}
+  m_Layer: 0
+  m_Name: Call Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1945731126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945731125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c748a0ac14ab904491ab23829f29107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchboard: {fileID: 139906139}
+--- !u!4 &1945731127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945731125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07554748, y: 1.5195026, z: 1.8118877}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1990152355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3276,6 +3383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Cable - Testing (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8874750894127520952, guid: e5a94d19f263137439e6ec4b912583bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3299,6 +3411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Button - Testing (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 754003578268477920, guid: f81c5fe0ffbca3c43a007d5f5781a678,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
         type: 3}
@@ -3416,6 +3533,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board Socket - Testing (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3487,18 +3609,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2015864819}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2024461669 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3834950133244709234, guid: f81c5fe0ffbca3c43a007d5f5781a678,
-    type: 3}
-  m_PrefabInstance: {fileID: 1144302770}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501cf44353363ca408617a1ca50b3fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2078342757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3511,6 +3621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Board Socket - Testing (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695906065176803603, guid: a2d122ba3b662ed4abd0154450f92994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8466145313845986367, guid: a2d122ba3b662ed4abd0154450f92994,
         type: 3}
@@ -3842,3 +3957,4 @@ SceneRoots:
   - {fileID: 1517603207}
   - {fileID: 1721153606}
   - {fileID: 139906138}
+  - {fileID: 1945731127}
