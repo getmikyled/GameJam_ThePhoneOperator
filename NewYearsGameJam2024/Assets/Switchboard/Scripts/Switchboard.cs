@@ -13,6 +13,7 @@ namespace IvoryIcicles
     public class Switchboard : MonoBehaviour
     {
         public BoardButton[] boardButtons;
+        public BoardCable[] boardCables;
         public BoardSocket[] boardSockets;
 
         public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
@@ -27,6 +28,7 @@ namespace IvoryIcicles
         public void AnswerCall(BoardButton button)
         {
             Call activeCall = button.activeCall;
+            boardCables[activeCall.emisorId].activeCall = activeCall;
             activeCall.operatorIsConnected = true;
             activeCall.operatorAnswered = true;
             print("OPERATOR: Operator. Good morning.");
@@ -34,16 +36,24 @@ namespace IvoryIcicles
             print($"OPERATOR: Sure thing! Please hold.");
         }
 
-		public void AnswerCall(BoardSocket socket)
+		public void AnswerCall(Call call)
 		{
-			socket.activeCall.receptorIsConnected = true;
-			socket.activeCall.receptorAnswered = true;
+			call.receptorIsConnected = true;
+			call.receptorAnswered = true;
 		}
 
 		public void ConnectCall(BoardSocket socket, BoardCable cable)
 		{
-            if (cable.callerId == socket.receptorId)
+            if (cable.activeCall == null)
+            {
+                Debug.LogWarning("Cable without an active call");
                 return;
+            }
+            if (cable.callerId == socket.receptorId)
+            {
+                Debug.LogWarning("The cable was connected to the same emisor.");
+                return;
+            }
 			socket.activeCall = boardButtons[cable.callerId].activeCall;
 			socket.activeCall.receptorIsConnected = true;
 		}
