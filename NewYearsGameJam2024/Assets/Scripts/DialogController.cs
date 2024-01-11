@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static IvoryIcicles.Dialog.DialogReader;
 
 namespace IvoryIcicles.Dialog
 {
@@ -18,13 +19,14 @@ namespace IvoryIcicles.Dialog
     public class DialogController : MonoBehaviour
     {
         public static DialogController controller { get; private set; }
-
         [SerializeField] private TextMeshProUGUI dialogText;
 
         [Header("Properties")]
         [SerializeField] private float typeSpeed = 2f;
 
         private bool isTyping = false;
+
+        private const string DISCONNECT_TEXT = "BEEEEEEEEEEEEEEEEEEEEP";
 
         ///-//////////////////////////////////////////////////////////////////
         ///
@@ -42,9 +44,8 @@ namespace IvoryIcicles.Dialog
 
         public void DisplayDialog(CallInfo argCallInfo)
         {
-            string dialog = "";
-
             int index = 0;
+            DialogLine dialogLine = null;
 
             // Checks whether to use operator or receptor start key
             if (argCallInfo.dialogType == DialogType.OPERATOR)
@@ -60,33 +61,36 @@ namespace IvoryIcicles.Dialog
             switch (argCallInfo.plot)
             {
                 case Plot.SPY:
-                    dialog = DialogReader.spyDialog.dialog[index].text;
+                    dialogLine = DialogReader.spyDialog.dialog[index];
                     break;
                 case Plot.REBUILDING_BRIDGES:
-                    dialog = DialogReader.rebuildingBridgesDialog.dialog[index].text;
+                    dialogLine = DialogReader.rebuildingBridgesDialog.dialog[index];
                     break;
                 case Plot.TOWN_GOSSIP:
-                    dialog = DialogReader.townGossipDialog.dialog[index].text;
+                    dialogLine = DialogReader.townGossipDialog.dialog[index];
                     break;
                 case Plot.LONG_DISTANCE:
-                    dialog = DialogReader.longDistanceDialog.dialog[index].text;
+                    dialogLine = DialogReader.longDistanceDialog.dialog[index];
                     break;
             }
 
-            if (dialog.Equals("") == false) TypeDialogText(dialog);
+            if (dialogLine != null) StartCoroutine(TypeDialogText(dialogLine));
         }
 
         ///-//////////////////////////////////////////////////////////////////
         ///
-        private IEnumerator TypeDialogText(string dialog)
+        private IEnumerator TypeDialogText(DialogLine argDialogLine)
         {
+            yield return new WaitForSeconds(argDialogLine.startDelay);
+
+            string dialog = argDialogLine.text;
             isTyping = true;
 
             float elapsedTime = 0f;
 
             int charIndex = 0;
 
-            while (charIndex < dialog.Length)
+            while (charIndex < dialog.Length && isTyping)
             {
                 elapsedTime += Time.deltaTime * typeSpeed;
                 charIndex = Mathf.FloorToInt(elapsedTime);
@@ -100,6 +104,17 @@ namespace IvoryIcicles.Dialog
 
             isTyping = false;
         }
-    }
 
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        public void ForceStopDialog()
+        {
+            if (isTyping)
+            {
+                isTyping = false;
+                dialogText.text = dialogText.text + "-";
+                StartCoroutine(TypeDialogText(new DialogLine(DISCONNECT_TEXT, 2f)));
+            }
+        }
+    }   
 }

@@ -40,7 +40,7 @@ namespace IvoryIcicles
         {
             if (elapsedTime >= incomingCallInterval)
             {
-                Call newCall = tryPublishNewCall();
+                Call newCall = TryPublishNewCall();
                 if (newCall != null)
                 {
                     print($"{newCall.emisorId}, {newCall.receptorId}");
@@ -54,7 +54,7 @@ namespace IvoryIcicles
             }
         }
 
-        private Call tryPublishNewCall()
+        private Call TryPublishNewCall()
         {
             var channels = switchboard.availableChannels.ToArray();
             var channelsAmmount = channels.Length;

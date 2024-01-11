@@ -73,6 +73,8 @@ namespace IvoryIcicles
             boardButtons[call.channelInID].DisconnectCall();
             boardCables[call.channelInID].DisconnectCall();
             boardSockets[call.channelOutID].DisconnectCall();
+
+            dialogController.ForceStopDialog();
         }
 
         public void FinishCall(Call call)
@@ -85,7 +87,9 @@ namespace IvoryIcicles
 			boardButtons[call.channelInID].DisconnectCall();
 			boardCables[call.channelInID].DisconnectCall();
 			boardSockets[call.channelOutID].DisconnectCall();
-		}
+
+            dialogController.ForceStopDialog();
+        }
 
         public bool PublishConnectionRequest(Call incommingCall)
         {
