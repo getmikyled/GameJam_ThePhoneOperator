@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2527148006164448763}
   - component: {fileID: 6396409190270425973}
   - component: {fileID: 3561638250393900894}
+  - component: {fileID: 4790747413958973822}
   m_Layer: 0
   m_Name: switchboardbutton
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4436636879947462202}
-  m_Mesh: {fileID: -5495902117074765545, guid: 3895f98483154a242bb66fe8b79b9ba2, type: 3}
+  m_Mesh: {fileID: -4335542707076622423, guid: 3895f98483154a242bb66fe8b79b9ba2, type: 3}
 --- !u!23 &6396409190270425973
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98,6 +99,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onMaterial: {fileID: 2100000, guid: 14a7d1a8a06296743ba0073e6e556fa8, type: 2}
   offMaterial: {fileID: 2100000, guid: fff845f6015e38648b713e4cb167529f, type: 2}
+--- !u!65 &4790747413958973822
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436636879947462202}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00081299414, y: 0.00077834324, z: 0.0008129926}
+  m_Center: {x: -0.000008395162, y: -1.7418533e-10, z: -0.0000894663}
 --- !u!1 &4834620484375977671
 GameObject:
   m_ObjectHideFlags: 0

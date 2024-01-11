@@ -1,6 +1,4 @@
-﻿using IvoryIcicles.Dialog;
-
-namespace IvoryIcicles
+﻿namespace IvoryIcicles
 {
 	public enum CallStatus
 	{
