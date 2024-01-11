@@ -9,7 +9,7 @@ namespace IvoryIcicles
     public class CallManager : MonoBehaviour
     {
         public static CallManager manager { get; private set; }
-        [SerializeField] private Switchboard switchboard;
+        private Switchboard switchboard;
 
         private bool canTimerUpdate = true;
         private float elapsedTime = 12;
@@ -24,6 +24,7 @@ namespace IvoryIcicles
 
         [SerializeField] float incomingCallInterval = 15f; // In seconds
 
+        #region UNITY CONSTRUCTORS
         private void Start()
         {
             if (manager != null && manager != this)
@@ -35,11 +36,14 @@ namespace IvoryIcicles
                 manager = this;
             }
         }
+        #endregion // UNITY CONSTRUCTORS
 
         private void Update()
         {
             if (elapsedTime >= incomingCallInterval)
             {
+                elapsedTime = 0;
+
                 Call newCall = TryPublishNewCall();
                 if (newCall != null)
                 {
@@ -56,6 +60,7 @@ namespace IvoryIcicles
 
         private Call TryPublishNewCall()
         {
+            switchboard = Switchboard.instance;
             var channels = switchboard.availableChannels.ToArray();
             var channelsAmmount = channels.Length;
 
@@ -68,12 +73,20 @@ namespace IvoryIcicles
 
             int receptor = newChannels.ToArray()[Random.Range(0, channelsAmmount - 1)].channelID;
 
-            Call newCall = new Call(emisor, receptor, callInfos[callIndex]);
-            callIndex++;
+            try
+            {
+                Call newCall = new Call(emisor, receptor, callInfos[callIndex]);
+                callIndex++;
 
-            switchboard.PublishConnectionRequest(newCall);
+                switchboard.PublishConnectionRequest(newCall);
 
-            return newCall;
+                return newCall;
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                Debug.Log("No more calls exist!");
+                return null;
+            }
         }
     }
 

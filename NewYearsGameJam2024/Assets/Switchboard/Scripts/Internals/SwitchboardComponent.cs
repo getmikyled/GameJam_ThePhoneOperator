@@ -14,7 +14,7 @@ namespace IvoryIcicles.SwitchboardInternals
         public virtual void ConnectCall(Call call)
 		{
 			activeCall = call;
-		}
+        }
 
 		public virtual void DisconnectCall()
 		{

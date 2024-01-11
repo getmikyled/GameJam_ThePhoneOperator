@@ -13,6 +13,8 @@ namespace IvoryIcicles
 {
     public class Switchboard : MonoBehaviour
     {
+        public static Switchboard instance { get; private set; }
+
         [SerializeField] private BoardButton[] boardButtons;
         [SerializeField] private BoardCable[] boardCables;
         [SerializeField] private BoardSocket[] boardSockets;
@@ -26,6 +28,15 @@ namespace IvoryIcicles
         private void Start()
         {
             dialogController = DialogController.controller;
+
+            if (instance != null && instance != this)
+            {
+                Destroy(instance);
+            }
+            else
+            {
+                instance = this;
+            }
         }
         #endregion //Unity Constructors
 
@@ -45,7 +56,6 @@ namespace IvoryIcicles
                     call.callInfo.dialogType = DialogType.RECEPTOR;
                     dialogController.DisplayDialog(call.callInfo);
                 }
-
             }
         }
 

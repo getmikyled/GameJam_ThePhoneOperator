@@ -7,23 +7,69 @@ using static IvoryIcicles.Dialog.DialogReader;
 
 namespace IvoryIcicles.Dialog
 {
+<<<<<<< Updated upstream
     public enum DialogType
     {
         NONE,
         OPERATOR,
         RECEPTOR
+=======
+    public static DialogController controller { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI dialogText;
+
+    [Header("Properties")]
+    [SerializeField] private float typeSpeed = 2f;
+
+    private const string DISCONNECT_TEXT = "BEEEEEEEEEEEEEEEEEEEEP";
+
+    private bool isTyping = false;
+
+    ///-//////////////////////////////////////////////////////////////////
+    ///
+    private void Start()
+    {
+        if (controller != null && controller != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            controller = this;
+        }
+    }
+
+    public void DisplayDialog(Plot plot, int index, float startDelay)
+    {
+        string dialog = "";
+
+        if (plot == Plot.SPY)
+        {
+            dialog = DialogReader.spyDialog.dialog[index].text;
+        }
+
+        if (dialog.Equals("") == false) StartCoroutine(TypeDialogText(dialog, startDelay));
+>>>>>>> Stashed changes
     }
 
     ///-//////////////////////////////////////////////////////////////////
     ///
+<<<<<<< Updated upstream
     public class DialogController : MonoBehaviour
     {
         public static DialogController controller { get; private set; }
         [SerializeField] private TextMeshProUGUI dialogText;
+=======
+    private IEnumerator TypeDialogText(string dialog, float startDelay)
+    {
+        yield return new WaitForSeconds(startDelay);
+        isTyping = true;
+>>>>>>> Stashed changes
 
         [Header("Properties")]
         [SerializeField] private float typeSpeed = 2f;
 
+        private SceneDialog currentScene;
         private bool isTyping = false;
 
         private const string DISCONNECT_TEXT = "BEEEEEEEEEEEEEEEEEEEEP";
@@ -32,6 +78,7 @@ namespace IvoryIcicles.Dialog
         ///
         private void Start()
         {
+<<<<<<< Updated upstream
             if (controller != null && controller != this)
             {
                 Destroy(this);
@@ -40,6 +87,15 @@ namespace IvoryIcicles.Dialog
             {
                 controller = this;
             }
+=======
+            if (isTyping == false) return;
+            elapsedTime += Time.deltaTime * typeSpeed;
+            charIndex = Mathf.FloorToInt(elapsedTime);
+
+            dialogText.text = dialog.Substring(0, charIndex);
+
+            yield return null;
+>>>>>>> Stashed changes
         }
 
         public void DisplayDialog(CallInfo argCallInfo)
@@ -47,6 +103,7 @@ namespace IvoryIcicles.Dialog
             int index = 0;
             DialogLine dialogLine = null;
 
+<<<<<<< Updated upstream
             // Checks whether to use operator or receptor start key
             if (argCallInfo.dialogType == DialogType.OPERATOR)
             {
@@ -61,19 +118,20 @@ namespace IvoryIcicles.Dialog
             switch (argCallInfo.plot)
             {
                 case Plot.SPY:
-                    dialogLine = DialogReader.spyDialog.dialog[index];
+                    currentScene = DialogReader.spyDialog;
                     break;
                 case Plot.REBUILDING_BRIDGES:
-                    dialogLine = DialogReader.rebuildingBridgesDialog.dialog[index];
+                    currentScene = DialogReader.rebuildingBridgesDialog;
                     break;
                 case Plot.TOWN_GOSSIP:
-                    dialogLine = DialogReader.townGossipDialog.dialog[index];
+                    currentScene = DialogReader.townGossipDialog;
                     break;
                 case Plot.LONG_DISTANCE:
-                    dialogLine = DialogReader.longDistanceDialog.dialog[index];
+                    currentScene = DialogReader.longDistanceDialog;
                     break;
             }
 
+            dialogLine = currentScene.dialog[index];
             if (dialogLine != null) StartCoroutine(TypeDialogText(dialogLine));
         }
 
@@ -103,6 +161,11 @@ namespace IvoryIcicles.Dialog
             dialogText.text = dialog;
 
             isTyping = false;
+
+            if (argDialogLine.nextKey != -1)
+            {
+                StartCoroutine(TypeDialogText(currentScene.dialog[argDialogLine.nextKey]));
+            }
         }
 
         ///-//////////////////////////////////////////////////////////////////
@@ -118,3 +181,20 @@ namespace IvoryIcicles.Dialog
         }
     }   
 }
+=======
+        isTyping = false;
+    }
+
+    ///-//////////////////////////////////////////////////////////////////
+    ///
+    public void ForceStopDialog()
+    {
+        if (isTyping)
+        {
+            isTyping = false;
+            dialogText.text = dialogText.text + "-";
+            StartCoroutine(TypeDialogText((DISCONNECT_TEXT), 2f);
+        }
+    }
+}
+>>>>>>> Stashed changes
