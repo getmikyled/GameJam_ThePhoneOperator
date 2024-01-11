@@ -4,11 +4,11 @@ using UnityEngine;
 namespace IvoryIcicles.SwitchboardInternals
 {
 	[RequireComponent(typeof(GrabHandler))]
-	public class BoardCable : MonoBehaviour
+	public class BoardCable : SwitchboardComponent
 	{
-		public int callerId;
-		public Call activeCall;
 		public Transform dockingPoint;
+
+		private Rigidbody rb;
 
 		public bool canBeGrabbed
 		{
@@ -23,11 +23,23 @@ namespace IvoryIcicles.SwitchboardInternals
 		private bool _canBeGrabbed = true;
 		private GrabHandler grabHandler;
 
+		public override void ConnectCall(Call call)
+		{
+			base.ConnectCall(call);
+			grabHandler.canBeGrabbed = false;
+		}
 
+		public override void DisconnectCall()
+		{
+			base.DisconnectCall();
+			grabHandler.canBeGrabbed = true;
+			rb.isKinematic = false;
+		}
 
 		private void Start()
 		{
 			grabHandler = GetComponent<GrabHandler>();
+			rb = GetComponent<Rigidbody>();
 		}
 	}
 }

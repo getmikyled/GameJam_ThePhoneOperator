@@ -16,16 +16,37 @@ namespace IvoryIcicles.Testing
 			if (elapsedTime > 2f)
 			{
 				elapsedTime = 0f;
-				if (switchboard.availableChannelsCount > 0)
 				{
-					var availableButtons = switchboard.allCalls.ToArray();
-					int emisor = switchboard.availableChannels.ElementAt(Random.Range(0, switchboard.availableChannelsCount)).callerId;
-					int receptor = switchboard.availableChannels.ElementAt(Random.Range(0, switchboard.availableChannelsCount)).callerId;
-					switchboard.PublishConnectionRequest(new Call(emisor, receptor));
+					Call newCall = tryPublishNewCall();
+					if (newCall != null )
+					{
+						print($"{newCall.emisorId}, {newCall.receptorId}");
+					}
 					return;
 				}
 			}
 			elapsedTime += Time.deltaTime;
+		}
+
+
+		private Call tryPublishNewCall()
+		{
+			var channels = switchboard.availableChannels.ToArray();
+			var channelsAmmount = channels.Length;
+
+			if (channelsAmmount == 0) return null;
+
+			int emisor = channels[Random.Range(0, channelsAmmount)].channelID;
+
+			var newChannels = channels.ToList();
+			newChannels.RemoveAt(emisor);
+			
+			int receptor = newChannels.ToArray()[Random.Range(0, channelsAmmount-1)].channelID;
+
+			Call newCall = new Call(emisor, receptor);
+			switchboard.PublishConnectionRequest(newCall);
+
+			return newCall;
 		}
 	}
 }

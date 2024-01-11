@@ -11,6 +11,8 @@ namespace IvoryIcicles
 		[SerializeField] private bool grabbed = false;
 		private Rigidbody rb;
 
+		public bool canBeGrabbed = true;
+
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
