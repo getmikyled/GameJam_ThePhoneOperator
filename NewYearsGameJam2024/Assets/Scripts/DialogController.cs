@@ -114,18 +114,22 @@ namespace IvoryIcicles.Dialog
             {
                 StartCoroutine(TypeDialogText(currentScene.dialog[argDialogLine.nextKey]));
             }
+            else
+            {
+                ForceStopDialog();
+            }
         }
 
         ///-//////////////////////////////////////////////////////////////////
         ///
-        public void ForceStopDialog()
+        public IEnumerator ForceStopDialog()
         {
-            if (isTyping)
-            {
-                isTyping = false;
-                dialogText.text = dialogText.text + "-";
-                StartCoroutine(TypeDialogText(new DialogLine(DISCONNECT_TEXT, 2f)));
-            }
+            isTyping = false;
+            dialogText.text = dialogText.text + "-";
+
+            yield return new WaitForSeconds(1);
+
+            dialogText.text = DISCONNECT_TEXT;
         }
     }   
 }

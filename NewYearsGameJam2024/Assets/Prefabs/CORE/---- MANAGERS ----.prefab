@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c97e5243402b9d41a05baa13211ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  incomingCallInterval: 15
+  incomingCallInterval: 3
 --- !u!1 &2274147850566133048
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogText: {fileID: 6965057463253022393}
-  typeSpeed: 10
+  typeSpeed: 0.075
+  pauseLength: 0.3
 --- !u!1 &5060888534263607710
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,3 +466,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogText: {fileID: 6965057463253022393}
   typeSpeed: 3
+  pauseLength: 0.5
