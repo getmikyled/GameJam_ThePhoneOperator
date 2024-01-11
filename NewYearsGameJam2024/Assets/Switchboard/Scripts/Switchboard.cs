@@ -112,7 +112,7 @@ namespace IvoryIcicles
             int targetChannel = availableChannels.ElementAt(Random.Range(0, availablesCount)).channelID;
             incommingCall.channelInID = targetChannel;
             boardButtons[targetChannel].ConnectCall(incommingCall);
-            boardCables[targetChannel].ConnectCall(incommingCall);
+            boardCables[targetChannel].SetActiveCall(incommingCall);
             return true;
         }
 

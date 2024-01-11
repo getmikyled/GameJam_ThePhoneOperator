@@ -23,6 +23,11 @@ namespace IvoryIcicles.SwitchboardInternals
 		private bool _canBeGrabbed = true;
 		private GrabHandler grabHandler;
 
+		public void SetActiveCall(Call call)
+		{
+			activeCall = call;
+		}
+
 		public override void ConnectCall(Call call)
 		{
 			base.ConnectCall(call);
