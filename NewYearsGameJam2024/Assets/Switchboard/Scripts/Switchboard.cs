@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 using IvoryIcicles.SwitchboardInternals;
+using IvoryIcicles.Dialog;
 
 
 // https://en.wikipedia.org/wiki/Telephone_switchboard
@@ -12,24 +13,49 @@ namespace IvoryIcicles
 {
     public class Switchboard : MonoBehaviour
     {
+        public static Switchboard instance { get; private set; }
+
         [SerializeField] private BoardButton[] boardButtons;
         [SerializeField] private BoardCable[] boardCables;
         [SerializeField] private BoardSocket[] boardSockets;
 
+        DialogController dialogController;
+
 		public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
 		public int availableChannelsAmmount => availableChannels.Count();
 
+        #region Unity Constructors
+        private void Start()
+        {
+            dialogController = DialogController.controller;
 
-		public void AnswerCall(Call call)
+            if (instance != null && instance != this)
+            {
+                Destroy(instance);
+            }
+            else
+            {
+                instance = this;
+            }
+        }
+        #endregion //Unity Constructors
+
+        public void AnswerCall(Call call)
         {
             if (!call.operatorAnswered)
             {
                 call.operatorAnswered = true;
+                call.callInfo.dialogType = DialogType.OPERATOR;
+                dialogController.DisplayDialog(call.callInfo);
             }
             else
             {
                 if (!call.receptorAnswered)
+                {
                     call.receptorAnswered = true;
+                    call.callInfo.dialogType = DialogType.RECEPTOR;
+                    dialogController.DisplayDialog(call.callInfo);
+                }
             }
         }
 
@@ -57,6 +83,8 @@ namespace IvoryIcicles
             boardButtons[call.channelInID].DisconnectCall();
             boardCables[call.channelInID].DisconnectCall();
             boardSockets[call.channelOutID].DisconnectCall();
+
+            dialogController.ForceStopDialog();
         }
 
         public void FinishCall(Call call)
@@ -69,7 +97,9 @@ namespace IvoryIcicles
 			boardButtons[call.channelInID].DisconnectCall();
 			boardCables[call.channelInID].DisconnectCall();
 			boardSockets[call.channelOutID].DisconnectCall();
-		}
+
+            dialogController.ForceStopDialog();
+        }
 
         public bool PublishConnectionRequest(Call incommingCall)
         {

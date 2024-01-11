@@ -1,10 +1,22 @@
 {
-
-    "spyDialog": [
+    "dialog": [
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Hello operator! Can you connect me to Hannah?",
+            "startDelay": 1
+        },
         {
             "nextKey": 2,
             "name": "Oscar",
-            "text": "Hannah , it’s Oscar the cake is currently baking, so nothing interesting as of yet, ingredients were troublesome so gonna need clean so that’ll be left you."
+            "text": "Hannah , it's Oscar the cake is currently baking, so nothing interesting as of yet, ingredients were troublesome so gonna need clean so that'll be left you.",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Hannah",
+            "text": "Oscarâ€¦ did you really have to reorganise an entire aisle for the recipe. Anyway all good now just keep me informed. What is with him and using cake for this?",
+            "startDelay": 1
         }
     ]
 }

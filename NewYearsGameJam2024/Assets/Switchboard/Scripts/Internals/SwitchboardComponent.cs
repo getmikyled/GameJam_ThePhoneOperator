@@ -11,12 +11,10 @@ namespace IvoryIcicles.SwitchboardInternals
 		public virtual Call activeCall { get; protected set; } = null;
 		public int channelID { get => _channelId; }
 
-
-
-		public virtual void ConnectCall(Call call)
+        public virtual void ConnectCall(Call call)
 		{
 			activeCall = call;
-		}
+        }
 
 		public virtual void DisconnectCall()
 		{

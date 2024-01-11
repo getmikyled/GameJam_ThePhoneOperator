@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using UnityEngine;
-
+using IvoryIcicles.Dialog;
 
 namespace IvoryIcicles.Testing
 {
 	public class CallGenerator : MonoBehaviour
 	{
+#if PROTOTYPING
 		public Switchboard switchboard;
 
-
+		private int callIndex = 0;
 		private float elapsedTime = 1.5f;
 
 		private void Update()
@@ -48,5 +49,6 @@ namespace IvoryIcicles.Testing
 
 			return newCall;
 		}
+#endif // PROTOTYPING
 	}
 }

@@ -1,73 +1,127 @@
-using GetMikyled;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static IvoryIcicles.Dialog.DialogReader;
 
-///-//////////////////////////////////////////////////////////////////
-///
-public class DialogController : MonoBehaviour
+namespace IvoryIcicles.Dialog
 {
-    public static DialogController controller { get; private set; }
-
-    [SerializeField] private TextMeshProUGUI dialogText;
-
-    [Header("Properties")]
-    [SerializeField]private float typeSpeed = 2f;
-
-    private bool isTyping = false;
-
-    private Coroutine typeDialogCoroutine;
-
-    ///-//////////////////////////////////////////////////////////////////
-    ///
-    private void Start()
+    public enum DialogType
     {
-        if (controller != null && controller != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            controller = this;
-        }
-    }
-
-    public void DisplayDialog(Plot plot, int index)
-    {
-        string dialog = "";
-
-        if (plot == Plot.SPY)
-        {
-            dialog = DialogReader.spyDialog.dialog[index].text;
-        }
-
-        if (dialog.Equals("") == false) TypeDialogText(dialog);
+        NONE,
+        OPERATOR,
+        RECEPTOR
     }
 
     ///-//////////////////////////////////////////////////////////////////
     ///
-    private IEnumerator TypeDialogText(string dialog)
+    public class DialogController : MonoBehaviour
     {
-        isTyping = true;
+        public static DialogController controller { get; private set; }
+        [SerializeField] private TextMeshProUGUI dialogText;
 
-        float elapsedTime = 0f;
+        [Header("Properties")]
+        [SerializeField] private float typeSpeed = 2f;
 
-        int charIndex = 0;
+        private SceneDialog currentScene;
+        private bool isTyping = false;
 
-        while (charIndex < dialog.Length)
+        private const string DISCONNECT_TEXT = "BEEEEEEEEEEEEEEEEEEEEP";
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        private void Start()
         {
-            elapsedTime += Time.deltaTime * typeSpeed;
-            charIndex = Mathf.FloorToInt(elapsedTime);
-
-            dialogText.text = dialog.Substring(0, charIndex);
-
-            yield return null;
+            if (controller != null && controller != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                controller = this;
+            }
         }
 
-        dialogText.text = dialog;
+        public void DisplayDialog(CallInfo argCallInfo)
+        {
+            int index = 0;
+            DialogLine dialogLine = null;
 
-        isTyping = false;
-    }
+            // Checks whether to use operator or receptor start key
+            if (argCallInfo.dialogType == DialogType.OPERATOR)
+            {
+                index = argCallInfo.operatorStartKey;
+            }
+            else if (argCallInfo.dialogType == DialogType.RECEPTOR)
+            {
+                index = argCallInfo.receptorStartKey;
+            }
+            else if (argCallInfo.dialogType == DialogType.NONE) { return; }
+            
+            switch (argCallInfo.plot)
+            {
+                case Plot.SPY:
+                    currentScene = DialogReader.spyDialog;
+                    break;
+                case Plot.REBUILDING_BRIDGES:
+                    currentScene = DialogReader.rebuildingBridgesDialog;
+                    break;
+                case Plot.TOWN_GOSSIP:
+                    currentScene = DialogReader.townGossipDialog;
+                    break;
+                case Plot.LONG_DISTANCE:
+                    currentScene = DialogReader.longDistanceDialog;
+                    break;
+            }
+
+            dialogLine = currentScene.dialog[index];
+            if (dialogLine != null) StartCoroutine(TypeDialogText(dialogLine));
+        }
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        private IEnumerator TypeDialogText(DialogLine argDialogLine)
+        {
+            yield return new WaitForSeconds(argDialogLine.startDelay);
+
+            string dialog = argDialogLine.text;
+            isTyping = true;
+
+            float elapsedTime = 0f;
+
+            int charIndex = 0;
+
+            while (charIndex < dialog.Length && isTyping)
+            {
+                elapsedTime += Time.deltaTime * typeSpeed;
+                charIndex = Mathf.FloorToInt(elapsedTime);
+
+                dialogText.text = dialog.Substring(0, charIndex);
+
+                yield return null;
+            }
+
+            dialogText.text = dialog;
+
+            isTyping = false;
+
+            if (argDialogLine.nextKey != -1)
+            {
+                StartCoroutine(TypeDialogText(currentScene.dialog[argDialogLine.nextKey]));
+            }
+        }
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        public void ForceStopDialog()
+        {
+            if (isTyping)
+            {
+                isTyping = false;
+                dialogText.text = dialogText.text + "-";
+                StartCoroutine(TypeDialogText(new DialogLine(DISCONNECT_TEXT, 2f)));
+            }
+        }
+    }   
 }
