@@ -17,17 +17,15 @@ namespace IvoryIcicles
 		public int channelInID = -1;
 		public int channelOutID = -1;
 
-		public bool emisorIsConnected = true;
-		public bool receptorIsConnected = false;
 		public bool operatorIsConnected = false;
 		
 		public bool started = true;
 		public bool operatorAnswered = false;
-		public bool receptorAnswered = false;
 
-		public bool emisorHangUp = false;
-		public bool receptorHangUp = false;
+		public bool finished = false;
 		
+		public bool correctReceptorIsConnected => receptorId == channelOutID;
+		public bool connected => channelOutID > -1;
 		public CallStatus status
 		{
 			get
@@ -36,14 +34,12 @@ namespace IvoryIcicles
 					return CallStatus.IDLE;
 				if (!operatorAnswered)
 					return CallStatus.AWAITING_OPERATOR;
-				if (!receptorAnswered)
+				if (!correctReceptorIsConnected)
 					return CallStatus.AWAITING_RECEPTOR;
-				if (emisorIsConnected && receptorIsConnected)
+				if (!finished)
 					return CallStatus.ON_GOING;
-				if (emisorHangUp && receptorHangUp)
-					return CallStatus.FINISHED;
 				else
-					return CallStatus.ON_GOING;
+					return CallStatus.FINISHED;
 			}
 		}
 

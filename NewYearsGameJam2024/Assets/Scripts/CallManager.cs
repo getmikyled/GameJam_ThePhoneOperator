@@ -43,11 +43,17 @@ namespace IvoryIcicles
             if (elapsedTime >= incomingCallInterval)
             {
                 elapsedTime = 0;
-
-                Call newCall = TryPublishNewCall();
-                if (newCall != null)
+                try
                 {
-                    print($"{newCall.emisorId}, {newCall.receptorId}");
+                    Call newCall = TryPublishNewCall();
+                    if (newCall != null)
+                    {
+                        print($"{newCall.emisorId}, {newCall.receptorId}");
+                    }
+                }
+                catch (System.Exception)
+                {
+                    Debug.LogError("FIX ME!");
                 }
                 return;
             }

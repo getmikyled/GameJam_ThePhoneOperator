@@ -31,7 +31,6 @@ namespace IvoryIcicles.SwitchboardInternals
 		public override void ConnectCall(Call call)
 		{
 			base.ConnectCall(call);
-			switchboard.AnswerCall(call);
 			grabHandler.canBeGrabbed = false;
 		}
 

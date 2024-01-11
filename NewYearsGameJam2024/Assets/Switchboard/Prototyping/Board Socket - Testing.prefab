@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbd7a3920c7a1540a7f6bddd50dacce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightbulb: {fileID: 5406369229831561334}
+  _channelId: 0
   switchboard: {fileID: 0}
-  _receptorId: 0
+  lightbulb: {fileID: 5406369229831561334}
   dockingPoint: {fileID: 152884396570974365}
 --- !u!114 &5406369229831561334
 MonoBehaviour:

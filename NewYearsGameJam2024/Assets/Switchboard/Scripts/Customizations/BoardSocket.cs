@@ -12,9 +12,9 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			get
 			{
-				if (!activeCall.receptorAnswered)
+				if (activeCall.connected)
 					return LightbulbStatus.BLINKING;
-				return LightbulbStatus.ON;
+				return LightbulbStatus.OFF;
 			}
 		}
 
@@ -27,6 +27,7 @@ namespace IvoryIcicles.SwitchboardInternals
 			cable.canBeGrabbed = false;
 			cable.GetComponent<Rigidbody>().isKinematic = true;
 			switchboard.ConnectCall(cable.activeCall, channelID);
+			switchboard.AnswerCall(activeCall);
 		}
 
 		private void OnTriggerExit(Collider other)

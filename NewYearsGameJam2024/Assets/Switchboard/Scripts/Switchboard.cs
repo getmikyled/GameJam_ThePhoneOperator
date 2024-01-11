@@ -50,11 +50,14 @@ namespace IvoryIcicles
             }
             else
             {
-                if (!call.receptorAnswered)
+                if (call.correctReceptorIsConnected)
                 {
-                    call.receptorAnswered = true;
                     call.callInfo.dialogType = DialogType.RECEPTOR;
                     dialogController.DisplayDialog(call.callInfo);
+                }
+                else
+                {
+                    Debug.LogWarning("OOPSIES.. WRONG NUMBER");
                 }
             }
         }
@@ -72,14 +75,13 @@ namespace IvoryIcicles
                 return false;
             }
             call.channelOutID = channelOutID;
-            call.receptorIsConnected = true;
             boardSockets[channelOutID].ConnectCall(call);
             return true;
         }
 
         public void DisconnectCall(Call call)
         {
-            call.receptorIsConnected = false;
+            call.channelOutID = -1;
             boardButtons[call.channelInID].DisconnectCall();
             boardCables[call.channelInID].DisconnectCall();
             boardSockets[call.channelOutID].DisconnectCall();
@@ -89,10 +91,7 @@ namespace IvoryIcicles
 
         public void FinishCall(Call call)
         {
-			call.emisorIsConnected = false;
-			call.emisorHangUp = true;
-			call.receptorIsConnected = false;
-			call.receptorHangUp = true;
+			call.finished = true;
 			SetOperatorConnection(call, connect: false);
 			boardButtons[call.channelInID].DisconnectCall();
 			boardCables[call.channelInID].DisconnectCall();
