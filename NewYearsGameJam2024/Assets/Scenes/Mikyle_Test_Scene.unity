@@ -594,11 +594,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1531626250555301039, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
-        type: 3}
-      propertyPath: incomingCallInterval
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4705297248042165398, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -653,16 +648,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ---- MANAGERS ----
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187172411344865382, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
-        type: 3}
-      propertyPath: typeSpeed
-      value: 0.075
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187172411344865382, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
-        type: 3}
-      propertyPath: pauseLength
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
