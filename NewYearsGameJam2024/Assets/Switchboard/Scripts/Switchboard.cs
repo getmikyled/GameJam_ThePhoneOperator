@@ -12,71 +12,83 @@ namespace IvoryIcicles
 {
     public class Switchboard : MonoBehaviour
     {
-        public BoardButton[] boardButtons;
-        public BoardCable[] boardCables;
-        public BoardSocket[] boardSockets;
+        [SerializeField] private BoardButton[] boardButtons;
+        [SerializeField] private BoardCable[] boardCables;
+        [SerializeField] private BoardSocket[] boardSockets;
 
-        public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
-        public int availableChannelsCount => availableChannels.Count();
-        public IEnumerable<int> availableIndexes => availableChannels.Select(b => b.callerId);
-        public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall).Where(c => c != null);
+		public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
+		public int availableChannelsAmmount => availableChannels.Count();
 
+
+		public void AnswerCall(Call call)
+        {
+            if (!call.operatorAnswered)
+            {
+                call.operatorAnswered = true;
+            }
+            else
+            {
+                if (!call.receptorAnswered)
+                    call.receptorAnswered = true;
+            }
+        }
+
+        public bool ConnectCall(Call call, int channelOutID)
+        {
+            if (call == null)
+            {
+                Debug.LogWarning("The connected cable doesn't have an active call.");
+                return false;
+            }
+            if (call.channelInID == channelOutID)
+            {
+                Debug.LogWarning("The cable was connected to the same emisor.");
+                return false;
+            }
+            call.channelOutID = channelOutID;
+            call.receptorIsConnected = true;
+            boardSockets[channelOutID].ConnectCall(call);
+            return true;
+        }
+
+        public void DisconnectCall(Call call)
+        {
+            call.receptorIsConnected = false;
+            boardButtons[call.channelInID].DisconnectCall();
+            boardCables[call.channelInID].DisconnectCall();
+            boardSockets[call.channelOutID].DisconnectCall();
+        }
+
+        public void FinishCall(Call call)
+        {
+			call.emisorIsConnected = false;
+			call.emisorHangUp = true;
+			call.receptorIsConnected = false;
+			call.receptorHangUp = true;
+			SetOperatorConnection(call, connect: false);
+			boardButtons[call.channelInID].DisconnectCall();
+			boardCables[call.channelInID].DisconnectCall();
+			boardSockets[call.channelOutID].DisconnectCall();
+		}
 
         public bool PublishConnectionRequest(Call incommingCall)
         {
-            int availablesCount = availableChannelsCount;
-			if (availablesCount == 0)
+            int availablesCount = availableChannelsAmmount;
+            if (availablesCount == 0)
             {
                 Debug.LogWarning("Switchboard channels full. Can't publish incomming call.");
                 return false;
             }
-            availableChannels.ElementAt(Random.Range(0, availablesCount)).activeCall = incommingCall;
+            int targetChannel = availableChannels.ElementAt(Random.Range(0, availablesCount)).channelID;
+            incommingCall.channelInID = targetChannel;
+            boardButtons[targetChannel].ConnectCall(incommingCall);
+            boardCables[targetChannel].ConnectCall(incommingCall);
             return true;
         }
 
-        public void AnswerCall(BoardButton button)
-        {
-            Call activeCall = button.activeCall;
-            boardCables[activeCall.emisorId].activeCall = activeCall;
-            activeCall.operatorIsConnected = true;
-            activeCall.operatorAnswered = true;
-            print("OPERATOR: Operator. Good morning.");
-            print($"CALLER {activeCall.emisorId}: Hi! I would like to talk to {activeCall.receptorId} please.");
-            print($"OPERATOR: Sure thing! Please hold.");
-        }
-
-		public void AnswerCall(Call call)
+		public void SetOperatorConnection(Call call, bool connect)
 		{
-			call.receptorIsConnected = true;
-			call.receptorAnswered = true;
+			call.operatorIsConnected = connect;
 		}
-
-		public void ConnectCall(BoardSocket socket, BoardCable cable)
-		{
-            if (cable.activeCall == null)
-            {
-                Debug.LogWarning("Cable without an active call");
-                return;
-            }
-            if (cable.callerId == socket.receptorId)
-            {
-                Debug.LogWarning("The cable was connected to the same emisor.");
-                return;
-            }
-			socket.activeCall = boardButtons[cable.callerId].activeCall;
-			socket.activeCall.receptorIsConnected = true;
-		}
-
-		public void DisconnectCall(BoardSocket socket)
-		{
-			socket.activeCall.emisorIsConnected = false;
-			socket.activeCall.receptorIsConnected = false;
-			socket.activeCall.operatorIsConnected = false;
-		}
-
-		public void DisconnectFromCall(BoardButton button)
-        {
-            button.activeCall.operatorIsConnected = false;
-        }
-    }
+	}
 }
