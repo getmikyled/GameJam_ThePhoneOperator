@@ -12,52 +12,83 @@ namespace IvoryIcicles
 {
     public class Switchboard : MonoBehaviour
     {
-        public BoardButton[] boardButtons;
-        public BoardSocket[] boardSockets;
+        [SerializeField] private BoardButton[] boardButtons;
+        [SerializeField] private BoardCable[] boardCables;
+        [SerializeField] private BoardSocket[] boardSockets;
 
-        public IEnumerable<Call> allCalls => boardButtons.Select(b => b.activeCall);
-        public Call currentActiveCall => allCalls.Where(c => c.operatorIsConnected).FirstOrDefault();
+		public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
+		public int availableChannelsAmmount => availableChannels.Count();
 
 
-        public void PublishConnectionRequest(Call incommingCall)
+		public void AnswerCall(Call call)
         {
-            boardButtons[incommingCall.emisorId].activeCall = incommingCall;
+            if (!call.operatorAnswered)
+            {
+                call.operatorAnswered = true;
+            }
+            else
+            {
+                if (!call.receptorAnswered)
+                    call.receptorAnswered = true;
+            }
         }
 
-        public void AnswerCall(BoardButton button)
+        public bool ConnectCall(Call call, int channelOutID)
         {
-            Call activeCall = button.activeCall;
-            activeCall.operatorIsConnected = true;
-            activeCall.operatorAnswered = true;
-            print("OPERATOR: Operator. Good morning.");
-            print($"CALLER {activeCall.emisorId}: Hi! I would like to talk to {activeCall.receptorId} please.");
-            print($"OPERATOR: Sure thing! Please hold.");
+            if (call == null)
+            {
+                Debug.LogWarning("The connected cable doesn't have an active call.");
+                return false;
+            }
+            if (call.channelInID == channelOutID)
+            {
+                Debug.LogWarning("The cable was connected to the same emisor.");
+                return false;
+            }
+            call.channelOutID = channelOutID;
+            call.receptorIsConnected = true;
+            boardSockets[channelOutID].ConnectCall(call);
+            return true;
         }
 
-		public void AnswerCall(BoardSocket socket)
-		{
-			socket.activeCall.receptorIsConnected = true;
-			socket.activeCall.receptorAnswered = true;
-		}
-
-		public void ConnectCall(BoardSocket socket, BoardCable cable)
-		{
-            if (cable.callerId == socket.receptorId)
-                return;
-			socket.activeCall = boardButtons[cable.callerId].activeCall;
-			socket.activeCall.receptorIsConnected = true;
-		}
-
-		public void DisconnectCall(BoardSocket socket)
-		{
-			socket.activeCall.emisorIsConnected = false;
-			socket.activeCall.receptorIsConnected = false;
-			socket.activeCall.operatorIsConnected = false;
-		}
-
-		public void DisconnectFromCall(BoardButton button)
+        public void DisconnectCall(Call call)
         {
-            button.activeCall.operatorIsConnected = false;
+            call.receptorIsConnected = false;
+            boardButtons[call.channelInID].DisconnectCall();
+            boardCables[call.channelInID].DisconnectCall();
+            boardSockets[call.channelOutID].DisconnectCall();
         }
-    }
+
+        public void FinishCall(Call call)
+        {
+			call.emisorIsConnected = false;
+			call.emisorHangUp = true;
+			call.receptorIsConnected = false;
+			call.receptorHangUp = true;
+			SetOperatorConnection(call, connect: false);
+			boardButtons[call.channelInID].DisconnectCall();
+			boardCables[call.channelInID].DisconnectCall();
+			boardSockets[call.channelOutID].DisconnectCall();
+		}
+
+        public bool PublishConnectionRequest(Call incommingCall)
+        {
+            int availablesCount = availableChannelsAmmount;
+            if (availablesCount == 0)
+            {
+                Debug.LogWarning("Switchboard channels full. Can't publish incomming call.");
+                return false;
+            }
+            int targetChannel = availableChannels.ElementAt(Random.Range(0, availablesCount)).channelID;
+            incommingCall.channelInID = targetChannel;
+            boardButtons[targetChannel].ConnectCall(incommingCall);
+            boardCables[targetChannel].ConnectCall(incommingCall);
+            return true;
+        }
+
+		public void SetOperatorConnection(Call call, bool connect)
+		{
+			call.operatorIsConnected = connect;
+		}
+	}
 }

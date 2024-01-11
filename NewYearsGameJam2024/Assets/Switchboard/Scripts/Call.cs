@@ -10,6 +10,9 @@
 		public int emisorId { get; private set; }
 		public int receptorId { get; private set; }
 
+		public int channelInID = -1;
+		public int channelOutID = -1;
+
 		public bool emisorIsConnected = true;
 		public bool receptorIsConnected = false;
 		public bool operatorIsConnected = false;
