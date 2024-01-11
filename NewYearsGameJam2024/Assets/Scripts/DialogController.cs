@@ -1,73 +1,105 @@
-using GetMikyled;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-///-//////////////////////////////////////////////////////////////////
-///
-public class DialogController : MonoBehaviour
+namespace IvoryIcicles.Dialog
 {
-    public static DialogController controller { get; private set; }
-
-    [SerializeField] private TextMeshProUGUI dialogText;
-
-    [Header("Properties")]
-    [SerializeField]private float typeSpeed = 2f;
-
-    private bool isTyping = false;
-
-    private Coroutine typeDialogCoroutine;
-
-    ///-//////////////////////////////////////////////////////////////////
-    ///
-    private void Start()
+    public enum DialogType
     {
-        if (controller != null && controller != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            controller = this;
-        }
-    }
-
-    public void DisplayDialog(Plot plot, int index)
-    {
-        string dialog = "";
-
-        if (plot == Plot.SPY)
-        {
-            dialog = DialogReader.spyDialog.dialog[index].text;
-        }
-
-        if (dialog.Equals("") == false) TypeDialogText(dialog);
+        NONE,
+        OPERATOR,
+        RECEPTOR
     }
 
     ///-//////////////////////////////////////////////////////////////////
     ///
-    private IEnumerator TypeDialogText(string dialog)
+    public class DialogController : MonoBehaviour
     {
-        isTyping = true;
+        public static DialogController controller { get; private set; }
 
-        float elapsedTime = 0f;
+        [SerializeField] private TextMeshProUGUI dialogText;
 
-        int charIndex = 0;
+        [Header("Properties")]
+        [SerializeField] private float typeSpeed = 2f;
 
-        while (charIndex < dialog.Length)
+        private bool isTyping = false;
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        private void Start()
         {
-            elapsedTime += Time.deltaTime * typeSpeed;
-            charIndex = Mathf.FloorToInt(elapsedTime);
-
-            dialogText.text = dialog.Substring(0, charIndex);
-
-            yield return null;
+            if (controller != null && controller != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                controller = this;
+            }
         }
 
-        dialogText.text = dialog;
+        public void DisplayDialog(CallInfo argCallInfo)
+        {
+            string dialog = "";
 
-        isTyping = false;
+            int index = 0;
+
+            // Checks whether to use operator or receptor start key
+            if (argCallInfo.dialogType == DialogType.OPERATOR)
+            {
+                index = argCallInfo.operatorStartKey;
+            }
+            else if (argCallInfo.dialogType == DialogType.RECEPTOR)
+            {
+                index = argCallInfo.receptorStartKey;
+            }
+            else if (argCallInfo.dialogType == DialogType.NONE) { return; }
+            
+            switch (argCallInfo.plot)
+            {
+                case Plot.SPY:
+                    dialog = DialogReader.spyDialog.dialog[index].text;
+                    break;
+                case Plot.REBUILDING_BRIDGES:
+                    dialog = DialogReader.rebuildingBridgesDialog.dialog[index].text;
+                    break;
+                case Plot.TOWN_GOSSIP:
+                    dialog = DialogReader.townGossipDialog.dialog[index].text;
+                    break;
+                case Plot.LONG_DISTANCE:
+                    dialog = DialogReader.longDistanceDialog.dialog[index].text;
+                    break;
+            }
+
+            if (dialog.Equals("") == false) TypeDialogText(dialog);
+        }
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        private IEnumerator TypeDialogText(string dialog)
+        {
+            isTyping = true;
+
+            float elapsedTime = 0f;
+
+            int charIndex = 0;
+
+            while (charIndex < dialog.Length)
+            {
+                elapsedTime += Time.deltaTime * typeSpeed;
+                charIndex = Mathf.FloorToInt(elapsedTime);
+
+                dialogText.text = dialog.Substring(0, charIndex);
+
+                yield return null;
+            }
+
+            dialogText.text = dialog;
+
+            isTyping = false;
+        }
     }
+
 }

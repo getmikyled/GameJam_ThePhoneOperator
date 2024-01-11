@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
-
+using IvoryIcicles.Dialog;
 
 namespace IvoryIcicles.Testing
 {
@@ -8,8 +8,13 @@ namespace IvoryIcicles.Testing
 	{
 		public Switchboard switchboard;
 
-
+		private int callIndex = 0;
 		private float elapsedTime = 1.5f;
+
+		private CallInfo[] callInfos = new CallInfo[]
+		{
+			new CallInfo(Plot.SPY, 0)
+		};
 
 		private void Update()
 		{
@@ -43,7 +48,7 @@ namespace IvoryIcicles.Testing
 			
 			int receptor = newChannels.ToArray()[Random.Range(0, channelsAmmount-1)].channelID;
 
-			Call newCall = new Call(emisor, receptor);
+			Call newCall = new Call(emisor, receptor, callInfos[callIndex]);
 			switchboard.PublishConnectionRequest(newCall);
 
 			return newCall;

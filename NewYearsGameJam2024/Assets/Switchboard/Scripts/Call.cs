@@ -1,4 +1,6 @@
-﻿namespace IvoryIcicles
+﻿using IvoryIcicles.Dialog;
+
+namespace IvoryIcicles
 {
 	public enum CallStatus
 	{
@@ -9,6 +11,8 @@
 	{
 		public int emisorId { get; private set; }
 		public int receptorId { get; private set; }
+
+		public CallInfo callInfo { get; private set; }
 
 		public int channelInID = -1;
 		public int channelOutID = -1;
@@ -43,10 +47,11 @@
 			}
 		}
 
-		public Call(int emisorId, int receptorId)
+		public Call(int emisorId, int receptorId, CallInfo callInfo)
 		{
 			this.emisorId = emisorId;
 			this.receptorId = receptorId;
+			this.callInfo = callInfo;
 		}
 	}
 }

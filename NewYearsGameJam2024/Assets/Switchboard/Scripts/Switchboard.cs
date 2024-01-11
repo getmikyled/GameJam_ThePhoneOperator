@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 using IvoryIcicles.SwitchboardInternals;
+using IvoryIcicles.Dialog;
 
 
 // https://en.wikipedia.org/wiki/Telephone_switchboard
@@ -16,20 +17,35 @@ namespace IvoryIcicles
         [SerializeField] private BoardCable[] boardCables;
         [SerializeField] private BoardSocket[] boardSockets;
 
+        DialogController dialogController;
+
 		public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
 		public int availableChannelsAmmount => availableChannels.Count();
 
+        #region Unity Constructors
+        private void Start()
+        {
+            dialogController = DialogController.controller;
+        }
+        #endregion //Unity Constructors
 
-		public void AnswerCall(Call call)
+        public void AnswerCall(Call call)
         {
             if (!call.operatorAnswered)
             {
                 call.operatorAnswered = true;
+                call.callInfo.dialogType = DialogType.OPERATOR;
+                dialogController.DisplayDialog(call.callInfo);
             }
             else
             {
                 if (!call.receptorAnswered)
+                {
                     call.receptorAnswered = true;
+                    call.callInfo.dialogType = DialogType.RECEPTOR;
+                    dialogController.DisplayDialog(call.callInfo);
+                }
+
             }
         }
 
