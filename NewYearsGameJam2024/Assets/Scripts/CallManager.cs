@@ -11,7 +11,7 @@ namespace IvoryIcicles
         public static CallManager manager { get; private set; }
         private Switchboard switchboard;
 
-        private bool canTimerUpdate = true;
+        public bool hasPublishedCall { get; private set; } = false;
         private float elapsedTime = 12;
 
         private int callIndex = 0;
@@ -25,22 +25,26 @@ namespace IvoryIcicles
         [SerializeField] float incomingCallInterval = 15f; // In seconds
 
         #region UNITY CONSTRUCTORS
-        private void Start()
+        private void Awake()
         {
             if (manager != null && manager != this)
             {
                 Destroy(manager);
-            } 
+            }
             else
             {
                 manager = this;
             }
         }
+        private void Start()
+        {
+            switchboard = Switchboard.instance;
+        }
         #endregion // UNITY CONSTRUCTORS
 
         private void Update()
         {
-            if (elapsedTime >= incomingCallInterval)
+            if (elapsedTime >= incomingCallInterval && hasPublishedCall == false)
             {
                 elapsedTime = 0;
                 try
@@ -49,6 +53,7 @@ namespace IvoryIcicles
                     if (newCall != null)
                     {
                         print($"{newCall.emisorId}, {newCall.receptorId}");
+                        hasPublishedCall = true;
                     }
                 }
                 catch (System.Exception)
@@ -58,15 +63,11 @@ namespace IvoryIcicles
                 return;
             }
 
-            if(canTimerUpdate)
-            {
-                elapsedTime += Time.deltaTime;
-            }
+            elapsedTime += Time.deltaTime;
         }
 
         private Call TryPublishNewCall()
         {
-            switchboard = Switchboard.instance;
             var channels = switchboard.availableChannels.ToArray();
             var channelsAmmount = channels.Length;
 
@@ -93,6 +94,12 @@ namespace IvoryIcicles
                 Debug.Log("No more calls exist!");
                 return null;
             }
+        }
+
+        public void ResetCallGenerator()
+        {
+            hasPublishedCall = false;
+            elapsedTime = 0;
         }
     }
 

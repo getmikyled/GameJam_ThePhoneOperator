@@ -23,7 +23,7 @@ namespace IvoryIcicles.Dialog
 
         [Header("Properties")]
         [SerializeField] private float typeSpeed = 2f;
-
+        [SerializeField] private float pauseLength = 0.5f;
         private SceneDialog currentScene;
         private bool isTyping = false;
 
@@ -31,7 +31,7 @@ namespace IvoryIcicles.Dialog
 
         ///-//////////////////////////////////////////////////////////////////
         ///
-        private void Start()
+        private void Awake()
         {
             if (controller != null && controller != this)
             {
@@ -88,18 +88,22 @@ namespace IvoryIcicles.Dialog
             string dialog = argDialogLine.text;
             isTyping = true;
 
-            float elapsedTime = 0f;
+            int charIndex = 1;
 
-            int charIndex = 0;
-
-            while (charIndex < dialog.Length && isTyping)
+            while (charIndex < dialog.Length - 1 && isTyping)
             {
-                elapsedTime += Time.deltaTime * typeSpeed;
-                charIndex = Mathf.FloorToInt(elapsedTime);
-
                 dialogText.text = dialog.Substring(0, charIndex);
 
-                yield return null;
+                if (dialog[charIndex - 1] == ',' || dialog[charIndex - 1] == '.' || dialog[charIndex + 1] == '!' || dialog[charIndex - 1] == '?')
+                {
+                    yield return new WaitForSeconds(pauseLength);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(typeSpeed);
+                }
+
+                charIndex++;
             }
 
             dialogText.text = dialog;

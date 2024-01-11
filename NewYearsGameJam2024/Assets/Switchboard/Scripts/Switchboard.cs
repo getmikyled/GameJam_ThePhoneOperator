@@ -20,15 +20,14 @@ namespace IvoryIcicles
         [SerializeField] private BoardSocket[] boardSockets;
 
         DialogController dialogController;
+        CallManager callManager;
 
 		public IEnumerable<BoardButton> availableChannels => boardButtons.Where(b => b.activeCall == null);
 		public int availableChannelsAmmount => availableChannels.Count();
 
         #region Unity Constructors
-        private void Start()
+        private void Awake()
         {
-            dialogController = DialogController.controller;
-
             if (instance != null && instance != this)
             {
                 Destroy(instance);
@@ -37,6 +36,11 @@ namespace IvoryIcicles
             {
                 instance = this;
             }
+        }
+        private void Start()
+        {
+            dialogController = DialogController.controller;
+            callManager = CallManager.manager;
         }
         #endregion //Unity Constructors
 
@@ -85,6 +89,7 @@ namespace IvoryIcicles
             boardButtons[call.channelInID].DisconnectCall();
             boardCables[call.channelInID].DisconnectCall();
             boardSockets[call.channelOutID].DisconnectCall();
+            callManager.ResetCallGenerator();
 
             dialogController.ForceStopDialog();
         }
@@ -96,6 +101,7 @@ namespace IvoryIcicles
 			boardButtons[call.channelInID].DisconnectCall();
 			boardCables[call.channelInID].DisconnectCall();
 			boardSockets[call.channelOutID].DisconnectCall();
+            callManager.ResetCallGenerator();
 
             dialogController.ForceStopDialog();
         }
