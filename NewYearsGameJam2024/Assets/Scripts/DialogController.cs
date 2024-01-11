@@ -110,13 +110,13 @@ namespace IvoryIcicles.Dialog
 
             isTyping = false;
 
-            if (argDialogLine.nextKey != -1)
+            if (argDialogLine.nextKey == -2)
+            {
+                StartCoroutine(ForceStopDialog());
+            }
+            else if (argDialogLine.nextKey != -1)
             {
                 StartCoroutine(TypeDialogText(currentScene.dialog[argDialogLine.nextKey]));
-            }
-            else
-            {
-                ForceStopDialog();
             }
         }
 
