@@ -1,9 +1,27 @@
 {
     "dialog": [
         {
-            "nextKey": 2,
+            "nextKey": -1,
             "name": "Oscar",
-            "text": "Hannah , it�s Oscar the cake is currently baking, so nothing interesting as of yet, ingredients were troublesome so gonna need clean so that'll be left you.",
+            "text": "Hey, so can you connect me to 21 Jeffrey Street?",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Hey again same as before, 21 Jeffrey Street.",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Okay, so I need a line to 14 River View",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Hi there. Can I get a line on 14 River View? Cheers!",
             "startDelay": 1
         }
     ]

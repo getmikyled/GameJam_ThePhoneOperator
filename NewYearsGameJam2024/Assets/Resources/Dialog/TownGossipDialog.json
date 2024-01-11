@@ -1,9 +1,27 @@
 {
     "dialog": [
         {
-            "nextKey": 2,
+            "nextKey": -1,
             "name": "Oscar",
-            "text": "Hannah , it�s Oscar the cake is currently baking, so nothing interesting as of yet, ingredients were troublesome so gonna need clean so that'll be left you.",
+            "text": "Ooo, can you put me to 23A Richter Street ",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Need a quick line to 8 Lake View",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Hannah",
+            "text": "Get me to Darson Investigations",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Hannah",
+            "text": "Get me through to 41st Arlbrick Lane.",
             "startDelay": 1
         }
     ]

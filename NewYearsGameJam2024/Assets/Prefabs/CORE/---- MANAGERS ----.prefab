@@ -463,5 +463,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d8b6ba84150ca40bb1c646b3e5a98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogText: {fileID: 0}
+  dialogText: {fileID: 6965057463253022393}
   typeSpeed: 3

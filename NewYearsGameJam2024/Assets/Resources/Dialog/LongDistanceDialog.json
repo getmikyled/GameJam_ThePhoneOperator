@@ -1,9 +1,21 @@
 {
     "dialog": [
         {
-            "nextKey": 2,
+            "nextKey": -1,
             "name": "Oscar",
-            "text": "Hannah , it�s Oscar the cake is currently baking, so nothing interesting as of yet, ingredients were troublesome so gonna need clean so that'll be left you.",
+            "text": "Hey umm... can you get me to... 37 carfet please.",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Oscar",
+            "text": "Bring a line to 8 Jeffrey Road.",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -1,
+            "name": "Hannah",
+            "text": "Can I get through to 37 carfet again?",
             "startDelay": 1
         }
     ]
