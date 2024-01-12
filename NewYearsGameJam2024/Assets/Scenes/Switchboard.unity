@@ -181,6 +181,21 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1652682130}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.323
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.371
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5441298014185686195, guid: babcab1ed4fa5dc408719b1e9832482e,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -29,8 +29,6 @@ namespace IvoryIcicles.SwitchboardInternals
 			}
 		}
 
-
-
 		public void DockIntoSocket(BoardSocket socket)
 		{
 			transform.LookAt(socket.dockingTransform);

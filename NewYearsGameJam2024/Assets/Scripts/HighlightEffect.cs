@@ -8,10 +8,20 @@ namespace IvoryIcicles
 	{
 		[SerializeField] private GameObject highlightEffect;
 
+		public void Activate()
+		{
+			highlightEffect.SetActive(true);
+		}
+
+		public void Deactivate()
+		{
+			highlightEffect.SetActive(false);
+		}
+
 		public void OnPointerEnter(PointerEventData eventData)
-			=> highlightEffect.SetActive(true);
+			=> Activate();
 
 		public void OnPointerExit(PointerEventData eventData)
-			=> highlightEffect.SetActive(false);
+			=> Deactivate();
 	}
 }

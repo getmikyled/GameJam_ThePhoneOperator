@@ -10,6 +10,16 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public Transform dockingTransform => _dockingTransform;
 		public bool occupied => dockedCable != null;
+		protected override LightbulbStatus nextLightbulbStatus
+		{
+			get
+			{
+				if (activeCall.connected)
+					return LightbulbStatus.BLINKING;
+				return LightbulbStatus.OFF;
+			}
+		}
+
 
 		private BoardCable dockedCable = null;
 
@@ -38,57 +48,15 @@ namespace IvoryIcicles.SwitchboardInternals
 			UndockCable();
 		}
 
-		protected override LightbulbStatus nextLightbulbStatus
-		{
-			get
-			{
-				if (activeCall.connected)
-					return LightbulbStatus.BLINKING;
-				return LightbulbStatus.OFF;
-			}
-		}
-	}
-}
-
-		/*[SerializeField] private Transform dockingPoint;
-
-
-		protected override LightbulbStatus nextLightbulbStatus
-		{
-			get
-			{
-				if (activeCall.connected)
-					return LightbulbStatus.BLINKING;
-				return LightbulbStatus.OFF;
-			}
-		}
-
 
 		private void OnTriggerEnter(Collider other)
 		{
-			BoardCable cable = other.GetComponent<BoardCable>();
-			
-			if (cable != null)
-			{
-                cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
-                cable.transform.position = dockingPoint.position;
-                cable.GetComponent<Rigidbody>().isKinematic = true;
-                switchboard.ConnectCall(cable.activeCall, channelID);
-                switchboard.AnswerCall(activeCall);
-            }
+			print($"Entered: {other.name}");
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			BoardCable cable = other.GetComponent<BoardCable>();
-			
-			if (cable != null)
-			{
-                cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
-                cable.transform.position = dockingPoint.position;
-                cable.GetComponent<Rigidbody>().isKinematic = true;
-                switchboard.DisconnectCall(cable.activeCall);
-            }
+			print($"Exited: {other.name}");
 		}
 	}
-}*/
+}
