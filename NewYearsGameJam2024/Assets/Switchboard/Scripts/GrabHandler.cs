@@ -5,14 +5,24 @@ using UnityEngine.EventSystems;
 namespace IvoryIcicles
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class GrabHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+	public class GrabHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 	{
 		[SerializeField] private Camera cam;
 		[SerializeField] private bool grabbed = false;
-		private Rigidbody rb;
+        [SerializeField] private GameObject highlightObj;
+        private Rigidbody rb;
 
 		public bool canBeGrabbed = true;
 
+		public void OnPointerEnter(PointerEventData eventData)
+		{
+			highlightObj.SetActive(true);
+		}
+
+		public void OnPointerExit(PointerEventData eventData)
+		{
+            highlightObj.SetActive(false);
+        }
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
@@ -25,7 +35,6 @@ namespace IvoryIcicles
 			grabbed = false;
 			rb.isKinematic = false;
 		}
-
 
 		private void Update()
 		{
