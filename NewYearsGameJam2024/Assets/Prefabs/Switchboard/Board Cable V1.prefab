@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4979775424449688118}
   - component: {fileID: 7378973091086771305}
   - component: {fileID: 5878780980674404557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: switchboardWireplug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 582253998505328989}
   - component: {fileID: 1277371154299235493}
   - component: {fileID: 2758845090527470467}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,9 +200,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2880147011877640376}
   - component: {fileID: 4728401317245575906}
-  - component: {fileID: 2167142200534635489}
   - component: {fileID: 7898769775235869541}
-  m_Layer: 0
+  - component: {fileID: 2167142200534635489}
+  - component: {fileID: 615866605929439365}
+  - component: {fileID: 3021252667122782508}
+  m_Layer: 6
   m_Name: Board Cable V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,26 +252,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2167142200534635489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714983899614731372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd913502830c5e43b0a8c6df0316617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  grabbed: 0
-  highlightObj: {fileID: 1479182800093369125}
-  canBeGrabbed: 1
 --- !u!114 &7898769775235869541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +270,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _channelId: 0
   switchboard: {fileID: 0}
-  dockingPoint: {fileID: 3692711794623314465}
+  grabHandler: {fileID: 2167142200534635489}
+  rotationLerp: {fileID: 3021252667122782508}
+  rigidbody: {fileID: 4728401317245575906}
+--- !u!114 &2167142200534635489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714983899614731372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd913502830c5e43b0a8c6df0316617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2880147011877640376}
+  cam: {fileID: 0}
+--- !u!114 &615866605929439365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714983899614731372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defd339c6c24b18419d3c57ce92b60df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightEffect: {fileID: 1479182800093369125}
+--- !u!114 &3021252667122782508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714983899614731372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9995e5da5b6d1478808225c739bb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTime: 0.5
 --- !u!1 &6815255362230201819
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7601889698224374905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3692711794623314465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Docking Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,6 +454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: switchboardWireplug (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55b6e6c1c4940ea49995fd59e361d4cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

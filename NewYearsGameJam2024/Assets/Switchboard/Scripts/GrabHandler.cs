@@ -5,48 +5,48 @@ using UnityEngine.EventSystems;
 namespace IvoryIcicles
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class GrabHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+	public class GrabHandler : MonoBehaviour
 	{
+		public Transform target;
+
 		[SerializeField] private Camera cam;
-		[SerializeField] private bool grabbed = false;
-        [SerializeField] private GameObject highlightObj;
 
-        private Rigidbody rb;
 
-		public bool canBeGrabbed = true;
-
-		public void OnPointerEnter(PointerEventData eventData)
+		private bool _canGrab = true;
+		public bool canGrab
 		{
-			highlightObj.SetActive(true);
+			get => _canGrab;
+			set
+			{
+				_canGrab = value;
+				isGrabbing = canGrab && isGrabbing;
+				if (!isGrabbing)
+					Release();
+			}
 		}
 
-		public void OnPointerExit(PointerEventData eventData)
-		{
-            highlightObj.SetActive(false);
-        }
+		private bool isGrabbing = false;
 
-		public void OnPointerDown(PointerEventData eventData)
+		public void Grab()
 		{
-			grabbed = true;
-			rb.isKinematic = true;
+			if (canGrab)
+				isGrabbing = true;
 		}
 
-		public void OnPointerUp(PointerEventData eventData)
+		public void Release()
 		{
-			grabbed = false;
-			rb.isKinematic = false;
+			isGrabbing = false;
 		}
+
 
 		private void Update()
 		{
-			if (!grabbed)
-				return;
-			transform.position = CursorMovementManager.GetCablePositionWhileNotStationary(cam, transform.position);
-		}
-
-		private void Start()
-		{
-			rb = GetComponent<Rigidbody>();
+			if (!isGrabbing) return;
+			
+			Ray r = cam.ScreenPointToRay(Input.mousePosition);
+			bool hit = Physics.Raycast(r, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.NameToLayer("Cursor Bounds"), QueryTriggerInteraction.Collide);
+			if (hit)
+				target.position = hitInfo.point;
 		}
 	}
 }

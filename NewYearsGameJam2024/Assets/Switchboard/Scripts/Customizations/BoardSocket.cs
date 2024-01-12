@@ -27,7 +27,6 @@ namespace IvoryIcicles.SwitchboardInternals
 			{
                 cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
                 cable.transform.position = dockingPoint.position;
-                cable.canBeGrabbed = false;
                 cable.GetComponent<Rigidbody>().isKinematic = true;
                 switchboard.ConnectCall(cable.activeCall, channelID);
                 switchboard.AnswerCall(activeCall);
@@ -42,7 +41,6 @@ namespace IvoryIcicles.SwitchboardInternals
 			{
                 cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
                 cable.transform.position = dockingPoint.position;
-                cable.canBeGrabbed = false;
                 cable.GetComponent<Rigidbody>().isKinematic = true;
                 switchboard.DisconnectCall(cable.activeCall);
             }
