@@ -6,7 +6,7 @@ namespace IvoryIcicles.SwitchboardInternals
 {
 	public enum CableStatus
 	{
-		STATIONARY, HELD, CONNECTED, REELED_BACK
+		IDLE, HELD, DOCKED, REELED
 	}
 	public class BoardCable : SwitchboardComponent, IPointerDownHandler, IPointerUpHandler
 	{
@@ -15,79 +15,83 @@ namespace IvoryIcicles.SwitchboardInternals
 		[SerializeField] private RotationLerp rotationLerp;
 		[SerializeField] private Rigidbody rigidbody;
 
-		private CableStatus _status = CableStatus.STATIONARY;
+		private CableStatus _status = CableStatus.IDLE;
+		
+		private BoardSocket targetSocket;
+
 		public CableStatus status
 		{
 			get => _status;
 			set
 			{
-				if (_status == value)
-					return;
 				_status = value;
-				switch (_status)
-				{
-					case CableStatus.HELD:
-						rigidbody.isKinematic = false;
-						grabHandler.Grab();
-						rotationLerp.Rotate(transform, Quaternion.Euler(90f, 0f, 0f));
-						break;
-					case CableStatus.CONNECTED:
-						rigidbody.isKinematic = false;
-						grabHandler.Release();
-						break;
-					case CableStatus.REELED_BACK:
-						rigidbody.isKinematic = true;
-						grabHandler.Release();
-						rotationLerp.Rotate(transform, Quaternion.Euler(0f, 0f, 0f));
-						break;
-					default:    // STATIONARY
-						rigidbody.isKinematic = false;
-						grabHandler.Release();
-						rotationLerp.Rotate(transform, Quaternion.Euler(0f, 0f, 0f));
-						break;
-				}
 				print(status);
 			}
 		}
 
-		private BoardSocket targetSocket;
 
-		public override void ConnectCall(Call call)
+
+		public void DockIntoSocket(BoardSocket socket)
 		{
-			base.ConnectCall(call);
-			status = CableStatus.CONNECTED;
+			transform.LookAt(socket.dockingTransform);
+			transform.position = socket.dockingTransform.position;
+			rigidbody.isKinematic = false;
+			status = CableStatus.DOCKED;
 		}
+
+		public void UndockFromSocket(BoardSocket socket)
+		{
+			rigidbody.isKinematic = true;
+			//status = CableStatus.REELED;
+			status = CableStatus.IDLE;
+		}
+
 
 		public override void DisconnectCall()
 		{
 			base.DisconnectCall();
-			status = CableStatus.HELD;
+			UndockFromSocket(targetSocket);
 		}
+
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
-			bool isConnected = status == CableStatus.CONNECTED;
-			if (!isConnected)
+			if (targetSocket == null)
 			{
 				status = CableStatus.HELD;
-				return;
+				grabHandler.Grab();
 			}
-			if (!activeCall.correctReceptorIsConnected || activeCall.status != CallStatus.ON_GOING)
-				return;
-
-			switchboard.DisconnectCall(activeCall);
-			status = CableStatus.HELD;
+			else
+			{
+				if (!activeCall.correctReceptorIsConnected)
+				{
+					switchboard.DisconnectCall(activeCall);
+					status = CableStatus.HELD;
+					grabHandler.Grab();
+				}
+			}
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
-			status = targetSocket != null ? CableStatus.CONNECTED : CableStatus.REELED_BACK;
+			if (grabHandler.isGrabbing)
+				grabHandler.Release();
+			if (targetSocket != null)
+			{ 
+				DockIntoSocket(targetSocket);
+			}
+			else
+			{
+				if (activeCall != null && activeCall.status == CallStatus.FINISHED)
+					UndockFromSocket(targetSocket);
+			}
+			status = CableStatus.IDLE;
 		}
 
 		public void SetActiveCall(Call call)
 			=> activeCall = call;
 
-		
+
 		private void OnTriggerEnter(Collider other)
 		{
 			targetSocket = other.GetComponentInParent<BoardSocket>();

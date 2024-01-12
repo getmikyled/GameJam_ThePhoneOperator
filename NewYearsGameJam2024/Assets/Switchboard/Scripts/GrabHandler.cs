@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System.Linq;
+using UnityEngine;
 
 
 namespace IvoryIcicles
@@ -8,6 +8,7 @@ namespace IvoryIcicles
 	public class GrabHandler : MonoBehaviour
 	{
 		public Transform target;
+		public LayerMask mask;
 
 		[SerializeField] private Camera cam;
 
@@ -25,7 +26,7 @@ namespace IvoryIcicles
 			}
 		}
 
-		private bool isGrabbing = false;
+		public bool isGrabbing { get; private set; } = false;
 
 		public void Grab()
 		{
@@ -42,9 +43,8 @@ namespace IvoryIcicles
 		private void Update()
 		{
 			if (!isGrabbing) return;
-			
 			Ray r = cam.ScreenPointToRay(Input.mousePosition);
-			bool hit = Physics.Raycast(r, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.NameToLayer("Cursor Bounds"), QueryTriggerInteraction.Collide);
+			bool hit = Physics.Raycast(r, out RaycastHit hitInfo, Mathf.Infinity, mask, QueryTriggerInteraction.Collide);
 			if (hit)
 				target.position = hitInfo.point;
 		}
