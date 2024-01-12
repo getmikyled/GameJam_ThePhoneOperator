@@ -7,7 +7,7 @@ namespace IvoryIcicles
 	[RequireComponent(typeof(Rigidbody))]
 	public class GrabHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 	{
-		[SerializeField] private Camera cam;
+		private Camera cam;
 		[SerializeField] private bool grabbed = false;
         [SerializeField] private GameObject highlightObj;
         private Rigidbody rb;
@@ -49,6 +49,7 @@ namespace IvoryIcicles
 		private void Start()
 		{
 			rb = GetComponent<Rigidbody>();
+			cam = Camera.main;
 		}
 	}
 }

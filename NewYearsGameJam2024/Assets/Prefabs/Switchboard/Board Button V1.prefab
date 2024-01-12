@@ -168,6 +168,8 @@ MonoBehaviour:
   _channelId: 0
   switchboard: {fileID: 0}
   lightbulb: {fileID: 3561638250393900894}
+  buttonClickSound: {fileID: 8300000, guid: 8af0ac6be71afd249b78d71b524626cb, type: 3}
+  soundVolume: 0.383
 --- !u!1 &7511746102993347782
 GameObject:
   m_ObjectHideFlags: 0

@@ -266,7 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd913502830c5e43b0a8c6df0316617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   grabbed: 0
   highlightObj: {fileID: 1479182800093369125}
   canBeGrabbed: 1

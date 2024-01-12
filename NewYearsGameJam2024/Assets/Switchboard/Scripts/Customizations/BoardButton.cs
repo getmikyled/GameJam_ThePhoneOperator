@@ -6,7 +6,17 @@ namespace IvoryIcicles.SwitchboardInternals
 {
 	public class BoardButton : SwitchboardComponentWithLightbulb, IPointerClickHandler
 	{
-		protected override LightbulbStatus nextLightbulbStatus
+		[SerializeField] private AudioClip buttonClickSound;
+		[Range(0f, 1f)][SerializeField] private float soundVolume = 1f;
+
+		AudioManager audioManager;
+
+        private void Start()
+        {
+			audioManager = AudioManager.manager;
+        }
+
+        protected override LightbulbStatus nextLightbulbStatus
 		{
 			get
 			{
@@ -22,6 +32,10 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
+            Debug.Log(audioManager); 
+
+            audioManager.PlayAudio(buttonClickSound, transform, soundVolume);
+
 			if (activeCall == null)
 			{
 				Debug.LogWarning("Channel doesn't have a call connected.");
