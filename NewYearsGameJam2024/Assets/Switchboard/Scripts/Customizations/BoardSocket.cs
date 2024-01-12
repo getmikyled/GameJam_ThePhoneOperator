@@ -22,22 +22,30 @@ namespace IvoryIcicles.SwitchboardInternals
 		private void OnTriggerEnter(Collider other)
 		{
 			BoardCable cable = other.GetComponent<BoardCable>();
-			cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
-			cable.transform.position = dockingPoint.position;
-			cable.canBeGrabbed = false;
-			cable.GetComponent<Rigidbody>().isKinematic = true;
-			switchboard.ConnectCall(cable.activeCall, channelID);
-			switchboard.AnswerCall(activeCall);
+			
+			if (cable != null)
+			{
+                cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
+                cable.transform.position = dockingPoint.position;
+                cable.canBeGrabbed = false;
+                cable.GetComponent<Rigidbody>().isKinematic = true;
+                switchboard.ConnectCall(cable.activeCall, channelID);
+                switchboard.AnswerCall(activeCall);
+            }
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
 			BoardCable cable = other.GetComponent<BoardCable>();
-			cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
-			cable.transform.position = dockingPoint.position;
-			cable.canBeGrabbed = false;
-			cable.GetComponent<Rigidbody>().isKinematic = true;
-			switchboard.DisconnectCall(cable.activeCall);
+			
+			if (cable != null)
+			{
+                cable.transform.rotation = Quaternion.Euler(Vector3.right * 90);
+                cable.transform.position = dockingPoint.position;
+                cable.canBeGrabbed = false;
+                cable.GetComponent<Rigidbody>().isKinematic = true;
+                switchboard.DisconnectCall(cable.activeCall);
+            }
 		}
 	}
 }
