@@ -11,8 +11,8 @@ namespace IvoryIcicles
         HILL_AVENUE_38 = 1,
         LAKE_VIEW_62 = 2,
         IRVING_STREET_69 = 3,
-        JEFFREY_ROAD_11 = 4,
-        CARFET_AVENUE_37 = 5,
+        JEFFREY_ROAD_8 = 4,
+        CARFET_AVENUE_36 = 5,
         RICHTER_STREET_23A = 6,
         JEFFREY_ROAD_21 = 7,
         RIVER_VIEW_19 = 8,
@@ -37,7 +37,10 @@ namespace IvoryIcicles
 
         private CallInfo[] callInfos = new CallInfo[]
         {
-            new CallInfo(Plot.SPY, AddressID.SKY_AVENUE_28, 0, 1)
+            new CallInfo(Plot.SPY, AddressID.SKY_AVENUE_28, 0, 1),
+            new CallInfo(Plot.TOWN_GOSSIP, AddressID.RICHTER_STREET_23A, 0, 1),
+            new CallInfo(Plot.LONG_DISTANCE, AddressID.CARFET_AVENUE_36, 0, 1),
+            new CallInfo(Plot.REBUILDING_BRIDGES, AddressID.JEFFREY_ROAD_21, 0, 1)
         };
 
         [SerializeField] float incomingCallInterval = 15f; // In seconds
