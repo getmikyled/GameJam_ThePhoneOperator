@@ -10,6 +10,7 @@ namespace IvoryIcicles
 		[SerializeField] private Camera cam;
 		[SerializeField] private bool grabbed = false;
         [SerializeField] private GameObject highlightObj;
+
         private Rigidbody rb;
 
 		public bool canBeGrabbed = true;
@@ -40,10 +41,7 @@ namespace IvoryIcicles
 		{
 			if (!grabbed)
 				return;
-			Ray r = cam.ScreenPointToRay(Input.mousePosition);
-			Vector3 targetPoint = r.GetPoint(Vector3.Distance(cam.transform.position, transform.position));
-			targetPoint.z = transform.position.z;
-			transform.position = targetPoint;
+			transform.position = CursorMovementManager.GetCablePositionWhileNotStationary(cam, transform.position);
 		}
 
 		private void Start()
