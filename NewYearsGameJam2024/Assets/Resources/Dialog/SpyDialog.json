@@ -9,25 +9,25 @@
         {
             "nextKey": 2,
             "name": "Oscar",
-            "text": "Hannah , it’s Oscar the cake is currently baking, so nothing interesting as of yet.",
+            "text": "Hannah, it’s Oscar. The cake is currently baking, so nothing interesting as of yet.",
             "startDelay": 1
         },
         {
             "nextKey": 3,
             "name": "Oscar",
-            "text": "ingredients were troublesome so gonna need clean so that’ll be left you.",
+            "text": "Ingredients were troublesome though, we are going to need some serious clean up. That’ll be left to you.",
             "startDelay": 1
         },
         {
             "nextKey": 4,
             "name": "Hannah",
-            "text": "Oscar... did you really have to reorganise an entire... aisle for the recipe.",
+            "text": "Oscar... did you really have to reorganize an entire... aisle for the recipe.",
             "startDelay": 1
         },
         {
             "nextKey": 5,
             "name": "Hannah",
-            "text": "Anyway, all good now just keep me informed. What is with him and using cake for this?",
+            "text": "*Sighs*... Anyway, all good now just keep me informed. And why are using cake for this?",
             "startDelay": 1
         },
         {
@@ -45,12 +45,12 @@
         {
             "nextKey": 8,
             "name": "Oscar",
-            "text": "Oh yeah... yeah. It’s just well you should come over and see this. It's not how I expected.",
+            "text": "Oh yeah... yeah. It’s just... well... you should come over and see this. It's not how I expected.",
             "startDelay": 3
         },{
             "nextKey": -2,
             "name": "Hannah",
-            "text": "Understood. I’ll be there shortly",
+            "text": "Agh, understood. I’ll be there shortly.",
             "startDelay": 3
         },
         {

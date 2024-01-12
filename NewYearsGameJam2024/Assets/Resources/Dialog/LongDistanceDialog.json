@@ -2,20 +2,68 @@
     "dialog": [
         {
             "nextKey": -1,
-            "name": "Oscar",
-            "text": "Hey umm... can you get me to... 37 carfet please.",
+            "name": "Valerie",
+            "text": "Hey umm... can you get me to... 36 carfet please.",
             "startDelay": 1
         },
         {
-            "nextKey": -1,
-            "name": "Oscar",
-            "text": "Bring a line to 11 Jeffrey Road.",
+            "nextKey": 2,
+            "name": "Valerie",
+            "text": "Hey honey, I know that we agreed only to call each other on weekends, but I-",
             "startDelay": 1
         },
         {
-            "nextKey": -1,
-            "name": "Hannah",
-            "text": "Can I get through to 37 carfet again?",
+            "nextKey": 3,
+            "name": "Max",
+            "text": "HEY VAL! Do not apologize, I missed you so much. Sorry I haven’t been able to phone as often because of work.",
+            "startDelay": 0
+        },
+        {
+            "nextKey": 4,
+            "name": "Valerie",
+            "text": "Don't even worry my love, I understand. But guess what happened today!",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 5,
+            "name": "Max",
+            "text": "Don't tell me, is it Beth and her rumours again?",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 6,
+            "name": "Valerie",
+            "text": "Yup! Maybe you can convince her that she is just imagining things, like the incident with James' store!",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 7,
+            "name": "Max",
+            "text": "Haha I could never. At least she has moved past the her neighbors being spies.",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 8,
+            "name": "Valerie",
+            "text": "Seriously! Like what spies make cake?",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 9,
+            "name": "Max",
+            "text": "Oop, Val sorry my job is trying to reach me right now! I can call you back in a bit though?",
+            "startDelay": 1
+        },
+        {
+            "nextKey": 10,
+            "name": "Max",
+            "text": "No worries honey! I'll be waiting here for you. I love you Maxy!",
+            "startDelay": 1
+        },
+        {
+            "nextKey": -2,
+            "name": "Max",
+            "text": "I love you too Val!",
             "startDelay": 1
         }
     ]
