@@ -8,15 +8,12 @@ namespace IvoryIcicles.SwitchboardInternals
 	{
 		[SerializeField] private AudioClip buttonClickSound;
 		[Range(0f, 1f)][SerializeField] private float soundVolume = 1f;
+		[SerializeField] private TMPro.TextMeshProUGUI text;
 
 		AudioManager audioManager;
 
-        private void Start()
-        {
-			audioManager = AudioManager.manager;
-        }
 
-        protected override LightbulbStatus nextLightbulbStatus
+		protected override LightbulbStatus nextLightbulbStatus
 		{
 			get
 			{
@@ -43,6 +40,13 @@ namespace IvoryIcicles.SwitchboardInternals
 			switchboard.SetOperatorConnection(activeCall, connect: true);
 			switchboard.AnswerCall(activeCall);
 			UpdateLightbulbStatus();
+		}
+
+
+		private void Start()
+		{
+			audioManager = AudioManager.manager;
+			text.text = channelID.ToString();
 		}
 	}
 }

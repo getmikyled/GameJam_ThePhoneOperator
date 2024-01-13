@@ -63,7 +63,6 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			if (occupied)
 			{
-				print("UNDOCK");
 				UndockCable();
 			}
 		}
