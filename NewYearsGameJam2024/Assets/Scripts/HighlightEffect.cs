@@ -7,6 +7,7 @@ namespace IvoryIcicles
 	public class HighlightEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		[SerializeField] private GameObject highlightEffect;
+		[SerializeField] private bool usePointerEvents = true;
 
 		public void Activate()
 		{
@@ -19,9 +20,15 @@ namespace IvoryIcicles
 		}
 
 		public void OnPointerEnter(PointerEventData eventData)
-			=> Activate();
+		{
+			if (usePointerEvents) 
+				Activate();
+		}
 
 		public void OnPointerExit(PointerEventData eventData)
-			=> Deactivate();
+		{
+			if (usePointerEvents)
+				Deactivate();
+		}
 	}
 }

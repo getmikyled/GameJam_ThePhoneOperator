@@ -15,6 +15,9 @@ namespace IvoryIcicles.SwitchboardInternals
 		[SerializeField] private RotationLerp rotationLerp;
 		[SerializeField] private Rigidbody rigidbody;
 
+		private Vector3 startingPosition;
+		private Quaternion startingRotation;
+
 		private CableStatus _status = CableStatus.IDLE;
 		
 		private BoardSocket targetSocket;
@@ -22,26 +25,24 @@ namespace IvoryIcicles.SwitchboardInternals
 		public CableStatus status
 		{
 			get => _status;
-			set
-			{
-				_status = value;
-				print(status);
-			}
+			set => _status = value;
 		}
 
 		public void DockIntoSocket(BoardSocket socket)
 		{
-			transform.LookAt(socket.dockingTransform);
+			rigidbody.isKinematic = true;
 			transform.position = socket.dockingTransform.position;
-			rigidbody.isKinematic = false;
+			transform.rotation = Quaternion.Inverse(socket.dockingTransform.rotation);
+			transform.LookAt(socket.dockingTransform);
+			socket.DockCable(this);
 			status = CableStatus.DOCKED;
 		}
 
 		public void UndockFromSocket(BoardSocket socket)
 		{
 			rigidbody.isKinematic = true;
-			//status = CableStatus.REELED;
 			status = CableStatus.IDLE;
+			Reset();
 		}
 
 
@@ -82,8 +83,12 @@ namespace IvoryIcicles.SwitchboardInternals
 			{
 				if (activeCall != null && activeCall.status == CallStatus.FINISHED)
 					UndockFromSocket(targetSocket);
+				else
+				{
+					status = CableStatus.IDLE;
+					Reset();
+				}
 			}
-			status = CableStatus.IDLE;
 		}
 
 		public void SetActiveCall(Call call)
@@ -99,6 +104,18 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			if (other.GetComponentInParent<BoardSocket>() == targetSocket)
 				targetSocket = null;
+		}
+
+		private void Start()
+		{
+			startingPosition = transform.position;
+			startingRotation = transform.rotation;
+		}
+
+		private void Reset()
+		{
+			transform.position = startingPosition;
+			transform.rotation = startingRotation;
 		}
 	}
 }

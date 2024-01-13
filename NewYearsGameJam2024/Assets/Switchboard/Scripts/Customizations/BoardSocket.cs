@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 namespace IvoryIcicles.SwitchboardInternals
 {
-	public class BoardSocket : SwitchboardComponentWithLightbulb
+	public class BoardSocket : SwitchboardComponentWithLightbulb, IPointerDownHandler
 	{
 		[SerializeField] private Transform _dockingTransform;
 		[SerializeField] private HighlightEffect highlightEffect;
+
+		[SerializeField] private Collider dockingCollider;
+		[SerializeField] private TMPro.TextMeshProUGUI channelDisplay;
+
 
 		public Transform dockingTransform => _dockingTransform;
 		public bool occupied => dockedCable != null;
@@ -14,7 +18,8 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			get
 			{
-				if (activeCall.connected)
+                
+                if (activeCall != null && activeCall.connected)
 					return LightbulbStatus.BLINKING;
 				return LightbulbStatus.OFF;
 			}
@@ -27,18 +32,22 @@ namespace IvoryIcicles.SwitchboardInternals
 		public void DockCable(BoardCable cable)
 		{
 			if (occupied) return;
+			highlightEffect.Deactivate();
 			dockedCable = cable;
 			dockedCable.DockIntoSocket(this);
+			activeCall = cable.activeCall;
 			if (switchboard.ConnectCall(cable.activeCall, channelID))
 				switchboard.AnswerCall(cable.activeCall);
+			dockingCollider.isTrigger = false;
 		}
 
 		public void UndockCable()
 		{
 			if (!occupied) return;
-			dockedCable.UndockFromSocket(this);
 			dockedCable = null;
 			switchboard.FinishCall(activeCall);
+			dockingCollider.isTrigger = true;
+			dockedCable.UndockFromSocket(this);
 		}
 
 
@@ -49,14 +58,29 @@ namespace IvoryIcicles.SwitchboardInternals
 		}
 
 
+		public void OnPointerDown(PointerEventData eventData)
+		{
+			if (occupied)
+			{
+				print("UNDOCK");
+				UndockCable();
+			}
+		}
+
+
 		private void OnTriggerEnter(Collider other)
 		{
-			print($"Entered: {other.name}");
+			highlightEffect.Activate();
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			print($"Exited: {other.name}");
+			highlightEffect.Deactivate();
+		}
+
+		private void Start()
+		{
+			channelDisplay.text = channelID.ToString();
 		}
 	}
 }
