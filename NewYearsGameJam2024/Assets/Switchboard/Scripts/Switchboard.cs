@@ -46,36 +46,33 @@ namespace IvoryIcicles
 
         public void AnswerCall(Call call)
         {
-            if (!call.operatorAnswered)
+			if (call.operatorIsConnected && !call.correctReceptorIsConnected && call.status != CallStatus.ON_GOING)
             {
                 call.operatorAnswered = true;
                 call.callInfo.dialogType = DialogType.OPERATOR;
-                dialogController.DisplayDialog(call.callInfo);
             }
             else
             {
                 if (call.correctReceptorIsConnected)
                 {
                     call.callInfo.dialogType = DialogType.RECEPTOR;
-                    dialogController.DisplayDialog(call.callInfo);
                 }
                 else
                 {
                     Debug.LogWarning("OOPSIES.. WRONG NUMBER");
                 }
             }
-        }
+            if (call.operatorIsConnected)
+            {
+				dialogController.DisplayDialog(call.callInfo);
+			}
+		}
 
         public bool ConnectCall(Call call, int channelOutID)
         {
             if (call == null)
             {
                 Debug.LogWarning("The connected cable doesn't have an active call.");
-                return false;
-            }
-            if (call.channelInID == channelOutID)
-            {
-                Debug.LogWarning("The cable was connected to the same emisor.");
                 return false;
             }
             call.channelOutID = channelOutID;
@@ -128,6 +125,10 @@ namespace IvoryIcicles
 		public void SetOperatorConnection(Call call, bool connect)
 		{
 			call.operatorIsConnected = connect;
+            if (!connect)
+            {
+			  	dialogController.ForceStopDialog();
+            }
 		}
 	}
 }
