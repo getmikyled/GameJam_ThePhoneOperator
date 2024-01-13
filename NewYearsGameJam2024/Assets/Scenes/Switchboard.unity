@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17277655, g: 0.21590099, b: 0.2978375, a: 1}
+  m_IndirectSpecularColor: {r: 0.17277691, g: 0.2159017, b: 0.2978386, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -151,6 +151,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1652682130}
+    - target: {fileID: 2931631715224656080, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2931631715224656080, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3430795455449427586, guid: babcab1ed4fa5dc408719b1e9832482e,
         type: 3}
       propertyPath: cam
@@ -171,6 +181,36 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1652682130}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.323
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.371
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125651252427472055, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.264
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5441298014185686195, guid: babcab1ed4fa5dc408719b1e9832482e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,6 +261,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 6097618044775234947, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097618044775234947, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6954186964989273808, guid: babcab1ed4fa5dc408719b1e9832482e,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -256,6 +306,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1652682130}
+    - target: {fileID: 9127729571892253987, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127729571892253987, guid: babcab1ed4fa5dc408719b1e9832482e,
+        type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

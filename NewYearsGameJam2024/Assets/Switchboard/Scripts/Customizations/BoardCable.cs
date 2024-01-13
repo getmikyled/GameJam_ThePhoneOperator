@@ -1,50 +1,121 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 namespace IvoryIcicles.SwitchboardInternals
 {
-	[RequireComponent(typeof(GrabHandler))]
-	public class BoardCable : SwitchboardComponent
+	public enum CableStatus
 	{
-		public Transform dockingPoint;
+		IDLE, HELD, DOCKED, REELED
+	}
+	public class BoardCable : SwitchboardComponent, IPointerDownHandler, IPointerUpHandler
+	{
+		[Header("Scene references:")]
+		[SerializeField] private GrabHandler grabHandler;
+		[SerializeField] private RotationLerp rotationLerp;
+		[SerializeField] private Rigidbody rigidbody;
 
-		private Rigidbody rb;
+		private Vector3 startingPosition;
+		private Quaternion startingRotation;
 
-		public bool canBeGrabbed
+		private CableStatus _status = CableStatus.IDLE;
+		
+		private BoardSocket targetSocket;
+
+		public CableStatus status
 		{
-			get => _canBeGrabbed;
-			set
-			{
-				_canBeGrabbed = value;
-				grabHandler.enabled = _canBeGrabbed;
-			}
+			get => _status;
+			set => _status = value;
 		}
 
-		private bool _canBeGrabbed = true;
-		private GrabHandler grabHandler;
-
-		public void SetActiveCall(Call call)
+		public void DockIntoSocket(BoardSocket socket)
 		{
-			activeCall = call;
+			rigidbody.isKinematic = true;
+			transform.position = socket.dockingTransform.position;
+			transform.rotation = Quaternion.Inverse(socket.dockingTransform.rotation);
+			transform.LookAt(socket.dockingTransform);
+			socket.DockCable(this);
+			status = CableStatus.DOCKED;
 		}
 
-		public override void ConnectCall(Call call)
+		public void UndockFromSocket(BoardSocket socket)
 		{
-			base.ConnectCall(call);
-			grabHandler.canBeGrabbed = false;
+			rigidbody.isKinematic = true;
+			status = CableStatus.IDLE;
+			Reset();
 		}
+
 
 		public override void DisconnectCall()
 		{
 			base.DisconnectCall();
-			grabHandler.canBeGrabbed = true;
-			rb.isKinematic = false;
+			UndockFromSocket(targetSocket);
+		}
+
+
+		public void OnPointerDown(PointerEventData eventData)
+		{
+			if (targetSocket == null)
+			{
+				status = CableStatus.HELD;
+				grabHandler.Grab();
+			}
+			else
+			{
+				if (!activeCall.correctReceptorIsConnected)
+				{
+					switchboard.DisconnectCall(activeCall);
+					status = CableStatus.HELD;
+					grabHandler.Grab();
+				}
+			}
+		}
+
+		public void OnPointerUp(PointerEventData eventData)
+		{
+			if (grabHandler.isGrabbing)
+				grabHandler.Release();
+			if (targetSocket != null)
+			{ 
+				DockIntoSocket(targetSocket);
+			}
+			else
+			{
+				if (activeCall != null && activeCall.status == CallStatus.FINISHED)
+					UndockFromSocket(targetSocket);
+				else
+				{
+					status = CableStatus.IDLE;
+					Reset();
+				}
+			}
+		}
+
+		public void SetActiveCall(Call call)
+			=> activeCall = call;
+
+
+		private void OnTriggerEnter(Collider other)
+		{
+			targetSocket = other.GetComponentInParent<BoardSocket>();
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			if (other.GetComponentInParent<BoardSocket>() == targetSocket)
+				targetSocket = null;
 		}
 
 		private void Start()
 		{
-			grabHandler = GetComponent<GrabHandler>();
-			rb = GetComponent<Rigidbody>();
+			startingPosition = transform.position;
+			startingRotation = transform.rotation;
+		}
+
+		private void Reset()
+		{
+			transform.position = startingPosition;
+			transform.rotation = startingRotation;
 		}
 	}
 }

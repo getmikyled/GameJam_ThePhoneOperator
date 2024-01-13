@@ -1,55 +1,52 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System.Linq;
+using UnityEngine;
 
 
 namespace IvoryIcicles
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class GrabHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+	public class GrabHandler : MonoBehaviour
 	{
-		private Camera cam;
-		[SerializeField] private bool grabbed = false;
-        [SerializeField] private GameObject highlightObj;
-        private Rigidbody rb;
+		public Transform target;
+		public LayerMask mask;
 
-		public bool canBeGrabbed = true;
+		[SerializeField] private Camera cam;
 
-		public void OnPointerEnter(PointerEventData eventData)
+
+		private bool _canGrab = true;
+		public bool canGrab
 		{
-			highlightObj.SetActive(true);
+			get => _canGrab;
+			set
+			{
+				_canGrab = value;
+				isGrabbing = canGrab && isGrabbing;
+				if (!isGrabbing)
+					Release();
+			}
 		}
 
-		public void OnPointerExit(PointerEventData eventData)
-		{
-            highlightObj.SetActive(false);
-        }
+		public bool isGrabbing { get; private set; } = false;
 
-		public void OnPointerDown(PointerEventData eventData)
+		public void Grab()
 		{
-			grabbed = true;
-			rb.isKinematic = true;
+			if (canGrab)
+				isGrabbing = true;
 		}
 
-		public void OnPointerUp(PointerEventData eventData)
+		public void Release()
 		{
-			grabbed = false;
-			rb.isKinematic = false;
+			isGrabbing = false;
 		}
+
 
 		private void Update()
 		{
-			if (!grabbed)
-				return;
+			if (!isGrabbing) return;
 			Ray r = cam.ScreenPointToRay(Input.mousePosition);
-			Vector3 targetPoint = r.GetPoint(Vector3.Distance(cam.transform.position, transform.position));
-			targetPoint.z = transform.position.z;
-			transform.position = targetPoint;
-		}
-
-		private void Start()
-		{
-			rb = GetComponent<Rigidbody>();
-			cam = Camera.main;
+			bool hit = Physics.Raycast(r, out RaycastHit hitInfo, Mathf.Infinity, mask, QueryTriggerInteraction.Collide);
+			if (hit)
+				target.position = hitInfo.point;
 		}
 	}
 }

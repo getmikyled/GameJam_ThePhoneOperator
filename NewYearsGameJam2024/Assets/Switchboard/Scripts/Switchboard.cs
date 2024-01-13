@@ -96,14 +96,17 @@ namespace IvoryIcicles
 
         public void FinishCall(Call call)
         {
-			call.finished = true;
-			SetOperatorConnection(call, connect: false);
-			boardButtons[call.channelInID].DisconnectCall();
-			boardCables[call.channelInID].DisconnectCall();
-			boardSockets[call.channelOutID].DisconnectCall();
-            callManager.ResetCallGenerator();
+            if (call.started && call.operatorAnswered)
+            {
+			    call.finished = true;
+			    SetOperatorConnection(call, connect: false);
+			    boardButtons[call.channelInID].DisconnectCall();
+			    boardCables[call.channelInID].DisconnectCall();
+			    boardSockets[call.channelOutID].DisconnectCall();
+                callManager.ResetCallGenerator();
 
-            dialogController.ForceStopDialog();
+                dialogController.ForceStopDialog();
+            }
         }
 
         public bool PublishConnectionRequest(Call incommingCall)
