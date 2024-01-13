@@ -93,6 +93,7 @@ namespace IvoryIcicles.Dialog
             while (charIndex < dialog.Length - 1 && isTyping)
             {
                 dialogText.text = dialog.Substring(0, charIndex);
+                AudioManager.manager.PlaySpeechClip(transform, 1f, 2f);
 
                 if (dialog[charIndex - 1] == ',' || dialog[charIndex - 1] == '.' || dialog[charIndex + 1] == '!' || dialog[charIndex - 1] == '?')
                 {

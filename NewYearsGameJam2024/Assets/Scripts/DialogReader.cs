@@ -40,6 +40,7 @@ namespace IvoryIcicles.Dialog
             public string name;
             public string text;
             public float startDelay;
+            public float pitch;
 
             public DialogLine(string argText, float argStartDelay)
             {

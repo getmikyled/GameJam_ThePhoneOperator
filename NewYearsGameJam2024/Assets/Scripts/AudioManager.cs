@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
     public static AudioManager manager { get; private set; }
+
+    [SerializeField] private AudioClip[] speechClips;
 
     [SerializeField] private AudioSource soundObject;
 
@@ -27,6 +28,20 @@ public class AudioManager : MonoBehaviour
 
         audioSource.clip = clip;
         audioSource.volume = volume;
+
+        audioSource.Play();
+
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+    }
+
+    public void PlaySpeechClip(Transform spawn, float volume, float pitch)
+    {
+        AudioSource audioSource = Instantiate(soundObject, spawn.position, Quaternion.identity);
+
+        audioSource.clip = speechClips[Random.Range(0, 3)];
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
 
         audioSource.Play();
 

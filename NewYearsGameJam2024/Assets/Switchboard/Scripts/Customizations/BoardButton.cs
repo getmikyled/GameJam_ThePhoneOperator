@@ -32,11 +32,9 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
-            Debug.Log(audioManager); 
-
             audioManager.PlayAudio(buttonClickSound, transform, soundVolume);
-
-			if (activeCall == null)
+            
+            if (activeCall == null)
 			{
 				Debug.LogWarning("Channel doesn't have a call connected.");
 				return;
