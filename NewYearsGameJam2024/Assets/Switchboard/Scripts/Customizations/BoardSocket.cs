@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 namespace IvoryIcicles.SwitchboardInternals
 {
 	public class BoardSocket : SwitchboardComponentWithLightbulb, IPointerDownHandler
@@ -44,10 +45,10 @@ namespace IvoryIcicles.SwitchboardInternals
 		public void UndockCable()
 		{
 			if (!occupied) return;
-			dockedCable = null;
 			switchboard.FinishCall(activeCall);
-			dockingCollider.isTrigger = true;
 			dockedCable.UndockFromSocket(this);
+			dockedCable = null;
+			dockingCollider.isTrigger = true;
 		}
 
 

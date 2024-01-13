@@ -32,8 +32,7 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			rigidbody.isKinematic = true;
 			transform.position = socket.dockingTransform.position;
-			transform.rotation = Quaternion.Inverse(socket.dockingTransform.rotation);
-			transform.LookAt(socket.dockingTransform);
+			transform.rotation = socket.dockingTransform.rotation;
 			socket.DockCable(this);
 			status = CableStatus.DOCKED;
 		}

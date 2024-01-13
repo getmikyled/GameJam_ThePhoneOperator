@@ -32,7 +32,8 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
-            audioManager.PlayAudio(buttonClickSound, transform, soundVolume);
+			if (buttonClickSound != null)
+				audioManager.PlayAudio(buttonClickSound, transform, soundVolume);
             
             if (activeCall == null)
 			{

@@ -96,6 +96,7 @@ namespace IvoryIcicles
 
         public void FinishCall(Call call)
         {
+            if (call == null) return;
             if (call.started && call.operatorAnswered)
             {
 			    call.finished = true;
