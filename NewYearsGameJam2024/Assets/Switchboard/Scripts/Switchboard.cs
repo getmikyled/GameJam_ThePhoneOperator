@@ -82,12 +82,11 @@ namespace IvoryIcicles
 
         public void DisconnectCall(Call call)
         {
-            call.channelOutID = -1;
             boardButtons[call.channelInID].DisconnectCall();
             boardCables[call.channelInID].DisconnectCall();
             boardSockets[call.channelOutID].DisconnectCall();
+            
             callManager.ResetCallGenerator();
-
             dialogController.ForceStopDialog();
         }
 
@@ -125,10 +124,10 @@ namespace IvoryIcicles
 		public void SetOperatorConnection(Call call, bool connect)
 		{
 			call.operatorIsConnected = connect;
-            if (!connect)
-            {
+            if (call.operatorIsConnected && call.status == CallStatus.ON_GOING)
+                    dialogController.DisplayDialog(call.callInfo);
+            else
 			  	dialogController.ForceStopDialog();
-            }
 		}
 	}
 }

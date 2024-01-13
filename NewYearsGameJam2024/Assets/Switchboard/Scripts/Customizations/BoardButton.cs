@@ -17,12 +17,11 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			get
 			{
-				if (activeCall == null || activeCall.status == CallStatus.IDLE || activeCall.status == CallStatus.FINISHED)
+				if (activeCall == null || activeCall.status == CallStatus.FINISHED)
 					return LightbulbStatus.OFF;
 				if (activeCall.operatorIsConnected)
 					return LightbulbStatus.ON;
-				else
-					return LightbulbStatus.BLINKING;
+				return LightbulbStatus.BLINKING;
 			}
 		}
 
@@ -37,8 +36,11 @@ namespace IvoryIcicles.SwitchboardInternals
 				Debug.LogWarning("Channel doesn't have a call connected.");
 				return;
 			}
-			switchboard.SetOperatorConnection(activeCall, connect: true);
-			switchboard.AnswerCall(activeCall);
+
+			switchboard.SetOperatorConnection(activeCall, connect: !activeCall.operatorIsConnected);
+			if (activeCall.status == CallStatus.AWAITING_CORRECT_RECEPTOR)
+				switchboard.AnswerCall(activeCall);
+
 			UpdateLightbulbStatus();
 		}
 

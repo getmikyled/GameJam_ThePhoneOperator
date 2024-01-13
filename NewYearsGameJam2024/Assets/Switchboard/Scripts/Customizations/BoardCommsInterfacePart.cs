@@ -18,12 +18,12 @@ namespace IvoryIcicles
 			{ 
 				_activeCall = value;
 				if (_activeCall == null)
-					m_prevCallStatus = CallStatus.IDLE;
+					m_prevCallStatus = CallStatus.AWAITING_CONNECTION;
 			}
 		}
 
 
-		private CallStatus m_prevCallStatus = CallStatus.IDLE;
+		private CallStatus m_prevCallStatus = CallStatus.AWAITING_CONNECTION;
 		private CallStatus m_currCallStatus;
 		private void Update()
 		{
@@ -34,7 +34,7 @@ namespace IvoryIcicles
 				{
 					if (m_currCallStatus == CallStatus.FINISHED)
 					{
-						m_prevCallStatus = CallStatus.IDLE;
+						m_prevCallStatus = CallStatus.AWAITING_CONNECTION;
 						activeCall = null;
 					}
 					else

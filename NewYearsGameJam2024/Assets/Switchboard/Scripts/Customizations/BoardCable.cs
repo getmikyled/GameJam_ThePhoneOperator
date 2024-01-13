@@ -39,6 +39,7 @@ namespace IvoryIcicles.SwitchboardInternals
 
 		public void UndockFromSocket(BoardSocket socket)
 		{
+			if (activeCall != null && activeCall.status == CallStatus.ON_GOING) return;
 			rigidbody.isKinematic = true;
 			status = CableStatus.IDLE;
 			Reset();

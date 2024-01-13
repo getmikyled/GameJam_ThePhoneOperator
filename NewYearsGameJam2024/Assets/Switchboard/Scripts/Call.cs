@@ -2,7 +2,7 @@
 {
 	public enum CallStatus
 	{
-		IDLE, AWAITING_OPERATOR, AWAITING_RECEPTOR, ON_GOING, FINISHED
+		AWAITING_CONNECTION, AWAITING_CORRECT_RECEPTOR, ON_GOING, FINISHED
 	}
 
 	public class Call
@@ -29,15 +29,12 @@
 			get
 			{
 				if (!started)
-					return CallStatus.IDLE;
-				if (!operatorAnswered)
-					return CallStatus.AWAITING_OPERATOR;
-				if (!correctReceptorIsConnected)
-					return CallStatus.AWAITING_RECEPTOR;
-				if (!finished)
-					return CallStatus.ON_GOING;
-				else
+					return CallStatus.AWAITING_CONNECTION;
+				if (finished)
 					return CallStatus.FINISHED;
+				if (correctReceptorIsConnected)
+					return CallStatus.ON_GOING;
+				return CallStatus.AWAITING_CORRECT_RECEPTOR;
 			}
 		}
 
