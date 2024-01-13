@@ -62,7 +62,7 @@ namespace IvoryIcicles.SwitchboardInternals
 			}
 			else
 			{
-				if (!activeCall.correctReceptorIsConnected)
+				if (activeCall.status != CallStatus.ON_GOING)
 				{
 					switchboard.DisconnectCall(activeCall);
 					status = CableStatus.HELD;
