@@ -196,21 +196,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.425
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.264
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423354639644451886, guid: babcab1ed4fa5dc408719b1e9832482e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5441298014185686195, guid: babcab1ed4fa5dc408719b1e9832482e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -991,13 +976,18 @@ PrefabInstance:
     - target: {fileID: 2573706425717674874, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
         type: 3}
       propertyPath: typeSpeed
-      value: 3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2573706425717674874, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
         type: 3}
       propertyPath: dialogText
       value: 
       objectReference: {fileID: 287313567}
+    - target: {fileID: 2573706425717674874, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
+        type: 3}
+      propertyPath: pauseLength
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2907405097632308829, guid: 764eb69abfe51dd4ca7b9c7061127fd6,
         type: 3}
       propertyPath: m_SizeDelta.x

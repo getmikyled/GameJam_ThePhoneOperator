@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySpeechClip(Transform spawn, float volume, float pitch)
     {
+        if (speechClips.Length == 0) return;
         AudioSource audioSource = Instantiate(soundObject, spawn.position, Quaternion.identity);
 
         audioSource.clip = speechClips[Random.Range(0, 3)];

@@ -19,8 +19,8 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			get
 			{
-                
-                if (activeCall != null && activeCall.connected)
+
+				if (activeCall != null && activeCall.connected)
 					return LightbulbStatus.BLINKING;
 				return LightbulbStatus.OFF;
 			}
@@ -49,6 +49,7 @@ namespace IvoryIcicles.SwitchboardInternals
 			dockedCable.UndockFromSocket(this);
 			dockedCable = null;
 			dockingCollider.isTrigger = true;
+			DisconnectCall();
 		}
 
 
