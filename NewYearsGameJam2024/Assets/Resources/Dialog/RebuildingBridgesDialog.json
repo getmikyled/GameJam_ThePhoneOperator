@@ -4,61 +4,71 @@
             "nextKey": -1,
             "name": "Rebecca",
             "text": "Hey, so can you connect me to 21 Jeffrey Road?",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.75
         },
         {
             "nextKey": 2,
             "name": "Rebecca",
             "text": "Aahuh... mmmm look...",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.75
         },
         {
             "nextKey": 3,
             "name": "Rebecca",
             "text": "I know how I left things wasn’t pretty, and that’s on me, well not just that everything was.",
-            "startDelay": 0
+            "startDelay": 0,
+            "pitch": 1.75
         },
         {
             "nextKey": 4,
             "name": "Rebecca",
             "text": "I understand if you don’t want to forgive me, nor do I expect you to...",
-            "startDelay": 0.2
+            "startDelay": 0.2,
+            "pitch": 1.75
         },
         {
             "nextKey": 5,
             "name": "Rebecca",
             "text": "but I’m sorry for everything ive screwed up...",
-            "startDelay": 2
+            "startDelay": 0,
+            "pitch": 1.75
         },
         {
             "nextKey": 6,
             "name": "Rebecca",
             "text": "Hey Sarah I did-",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.75
         },
         {
             "nextKey": 7,
             "name": "Sarah",
             "text": "STOP. Stop talking. I just can’t deal with this right now.",
-            "startDelay": 0
+            "startDelay": 0,
+            "pitch": 1.5
         },
         {
             "nextKey": 8,
             "name": "Sarah",
             "text": "I can’t see you at all. I don’t need this right now, I can't let it affect me.",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.5
         },
         {
             "nextKey": 9,
             "name": "Sarah",
             "text": "Rebecca, look. If you wanted to be in your niece and nephew’s life, you shouldn't have waited this long.",
-            "startDelay": 2
+            "startDelay": 2,
+            "pitch": 1.5
         },
         {
             "nextKey": -2,
             "name": "Rebecca",
             "text": "Sarah please, give me a chance! I will do anyt-",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.75
         },
         {
             "nextKey": -1,

@@ -418,7 +418,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7662108065683978968}
   - component: {fileID: 5894122064168645768}
-  - component: {fileID: 2573706425717674874}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -453,21 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1918d49f041d5409aaee7d1cf9f85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2573706425717674874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7541099681903392622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d8b6ba84150ca40bb1c646b3e5a98a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogText: {fileID: 6965057463253022393}
-  typeSpeed: 3
-  pauseLength: 0.5
 --- !u!1 &8378604731397007681
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,5 +625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cd589dd5e1ab24fbc984ee799cf049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechClips:
+  - {fileID: 8300000, guid: b5c468f91a3111e4da464510f2f6f532, type: 3}
+  - {fileID: 8300000, guid: 9f0cfea56cf50c94ca73a0528e2e8bbd, type: 3}
+  - {fileID: 8300000, guid: 196ef663707f73f49ba9a9c490ee66cd, type: 3}
   soundObject: {fileID: 6414468691476371389, guid: 339e790b1973e0a4c820905aa43ed8b6,
     type: 3}

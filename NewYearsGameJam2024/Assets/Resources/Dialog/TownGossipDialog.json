@@ -4,55 +4,69 @@
             "nextKey": -1,
             "name": "Benjamin",
             "text": "Ooo, can you put me to 23A Richter Street ",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1
         },
         {
             "nextKey": 2,
             "name": "Benjamin",
             "text": "Hey Henry! This is Ben, did you hear about James’s store?",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1
         },
         {
             "nextKey": 3,
-            "name": "Henrry",
+            "name": "Henry",
             "text": "Sup Ben! I haven't, has James finally got what he deserves?",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.2
         },
         {
             "nextKey": 4,
             "name": "Benjamin",
             "text": "Apparently he paid off the building inspector and with the recent incident it’s coming back to bite.",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1
         },
         {
             "nextKey": 5,
             "name": "Henry",
             "text": "Agh, all these bloody rumours, seriously it’s killing my business.",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.2
         },
         {
             "nextKey": 6,
             "name": "Henry",
-            "text": "Ben look, I’ve got cash saved up. I'll' pay if you can find out who’s slandering me so I can sue them for this hell.",
-            "startDelay": 1
+            "text": "Ben look, I’ve got cash saved up. I'll pay if you can find out who’s slandering me.",
+            "startDelay": 1.2
         },
         {
             "nextKey": 7,
+            "name": "Henry",
+            "text": "I want to sue them for this hell!",
+            "startDelay": 1,
+            "pitch": 1.2
+        },
+        {
+            "nextKey": 8,
             "name": "Benjamin",
             "text": "Hmmm I'll think about it. Either way we are going to make that prick pay for his betrayal!",
             "startDelay": 1
         },
         {
-            "nextKey": 8,
+            "nextKey": 9,
             "name": "Benjamin",
             "text": "He cuts us out of his business like a snake and now he complains!",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1
         },
         {
-            "nextKey": 9,
+            "nextKey": -2,
             "name": "Henry",
             "text": "For real! Anyway, ring me up again if you want to take me up on the offer.",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1.2
         },
         {
             "nextKey": -1,

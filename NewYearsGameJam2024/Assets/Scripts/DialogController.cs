@@ -24,6 +24,7 @@ namespace IvoryIcicles.Dialog
         [Header("Properties")]
         [SerializeField] private float typeSpeed = 2f;
         [SerializeField] private float pauseLength = 0.5f;
+        [SerializeField] private float speechVolume = 0.8f;
         private SceneDialog currentScene;
         private bool isTyping = false;
 
@@ -93,7 +94,6 @@ namespace IvoryIcicles.Dialog
             while (charIndex < dialog.Length - 1 && isTyping)
             {
                 dialogText.text = dialog.Substring(0, charIndex);
-                AudioManager.manager.PlaySpeechClip(transform, 1f, 2f);
 
                 if (dialog[charIndex - 1] == ',' || dialog[charIndex - 1] == '.' || dialog[charIndex + 1] == '!' || dialog[charIndex - 1] == '?')
                 {
@@ -101,6 +101,10 @@ namespace IvoryIcicles.Dialog
                 }
                 else
                 {
+                    if (dialog[charIndex - 1] != ' ')
+                    {
+                        AudioManager.manager.PlaySpeechClip(transform, speechVolume, argDialogLine.pitch);
+                    }
                     yield return new WaitForSeconds(typeSpeed);
                 }
 
@@ -114,6 +118,7 @@ namespace IvoryIcicles.Dialog
             if (argDialogLine.nextKey == -2)
             {
                 StartCoroutine(ForceStopDialog());
+                Switchboard.instance.FinishCall(CallManager.manager.currentCall);
             }
             else if (argDialogLine.nextKey != -1)
             {

@@ -33,6 +33,7 @@ namespace IvoryIcicles
         private float elapsedTime = 12;
 
         private int callIndex = 0;
+        public Call currentCall;
         public Call operatorConnectedCall;
 
         private CallInfo[] callInfos = new CallInfo[]
@@ -67,7 +68,6 @@ namespace IvoryIcicles
         {
             if (elapsedTime >= incomingCallInterval && hasPublishedCall == false)
             {
-                elapsedTime = 0;
                 try
                 {
                     Call newCall = TryPublishNewCall();
@@ -75,6 +75,7 @@ namespace IvoryIcicles
                     {
                         print($"{newCall.emisorId}, {newCall.receptorId}");
                         hasPublishedCall = true;
+                        currentCall = newCall;
                     }
                 }
                 catch (System.Exception)

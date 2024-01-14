@@ -10,7 +10,6 @@ namespace IvoryIcicles.SwitchboardInternals
 		[SerializeField] private HighlightEffect highlightEffect;
 
 		[SerializeField] private Collider dockingCollider;
-		[SerializeField] private TMPro.TextMeshProUGUI channelDisplay;
 
 
 		public Transform dockingTransform => _dockingTransform;
@@ -46,6 +45,7 @@ namespace IvoryIcicles.SwitchboardInternals
 		{
 			if (!occupied) return;
 			switchboard.FinishCall(activeCall);
+			dockedCable.DisconnectCall();
 			dockedCable.UndockFromSocket(this);
 			dockedCable = null;
 			dockingCollider.isTrigger = true;
@@ -56,7 +56,6 @@ namespace IvoryIcicles.SwitchboardInternals
 		public override void DisconnectCall()
 		{
 			base.DisconnectCall();
-			UndockCable();
 		}
 
 
@@ -77,11 +76,6 @@ namespace IvoryIcicles.SwitchboardInternals
 		private void OnTriggerExit(Collider other)
 		{
 			highlightEffect.Deactivate();
-		}
-
-		private void Start()
-		{
-			channelDisplay.text = channelID.ToString();
 		}
 	}
 }
