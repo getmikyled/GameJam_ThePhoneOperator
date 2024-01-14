@@ -18,21 +18,21 @@
             "nextKey": 3,
             "name": "Rebecca",
             "text": "I know how I left things wasn’t pretty, and that’s on me, well not just that everything was.",
-            "startDelay": 0,
+            "startDelay": 1,
             "pitch": 1.75
         },
         {
             "nextKey": 4,
             "name": "Rebecca",
             "text": "I understand if you don’t want to forgive me, nor do I expect you to...",
-            "startDelay": 0.2,
+            "startDelay": 1,
             "pitch": 1.75
         },
         {
             "nextKey": 5,
             "name": "Rebecca",
             "text": "but I’m sorry for everything ive screwed up...",
-            "startDelay": 0,
+            "startDelay": 0.2,
             "pitch": 1.75
         },
         {

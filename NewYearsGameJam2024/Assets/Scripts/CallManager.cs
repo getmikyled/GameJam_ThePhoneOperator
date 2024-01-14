@@ -71,7 +71,7 @@ namespace IvoryIcicles
                 try
                 {
                     Call newCall = TryPublishNewCall();
-                    if (newCall != null)
+                    if (newCall != null && callIndex < callInfos.Length)
                     {
                         print($"{newCall.emisorId}, {newCall.receptorId}");
                         hasPublishedCall = true;

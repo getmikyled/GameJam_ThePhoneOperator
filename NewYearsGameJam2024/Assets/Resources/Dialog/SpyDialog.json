@@ -17,21 +17,21 @@
         {
             "nextKey": 3,
             "name": "Oscar",
-            "text": "Ingredients were troublesome though, we are going to need some serious clean up. That’ll be left to you.",
+            "text": "Ingredients were troublesome, so we need some serious clean up. That’ll be left to you.",
             "startDelay": 1,
             "pitch": 0.8
         },
         {
             "nextKey": 4,
             "name": "Hannah",
-            "text": "Oscar... did you really have to reorganize an entire... aisle for the recipe.",
+            "text": "Oscar... did you really have to reorganize an entire... aisle for the recipe?",
             "startDelay": 1,
             "pitch": 2
         },
         {
             "nextKey": 5,
             "name": "Hannah",
-            "text": "*Sighs*... Anyway, all good now just keep me informed. And why are using cake for this?",
+            "text": "*Sighs*... Anyway, all good now just keep me informed. Especially if the plan gets messy.",
             "startDelay": 1,
             "pitch": 2
         },
@@ -52,7 +52,7 @@
         {
             "nextKey": 8,
             "name": "Oscar",
-            "text": "Oh yeah... yeah. It’s just... well... you should come over and see this. It's not how I expected.",
+            "text": "Oh yeah... It’s just well... you should come over and see this. It's not how I expected.",
             "startDelay": 3,
             "pitch": 0.8
         },

@@ -3,7 +3,7 @@
         {
             "nextKey": -1,
             "name": "Benjamin",
-            "text": "Ooo, can you put me to 23A Richter Street ",
+            "text": "Can you put me to 23A Richter Street?",
             "startDelay": 1,
             "pitch": 1
         },
@@ -24,7 +24,7 @@
         {
             "nextKey": 4,
             "name": "Benjamin",
-            "text": "Apparently he paid off the building inspector and with the recent incident it’s coming back to bite.",
+            "text": "Apparently he paid off the building inspector. With the recent incident it’s coming back to bite.",
             "startDelay": 1,
             "pitch": 1
         },
@@ -39,7 +39,8 @@
             "nextKey": 6,
             "name": "Henry",
             "text": "Ben look, I’ve got cash saved up. I'll pay if you can find out who’s slandering me.",
-            "startDelay": 1.2
+            "startDelay": 1.2,
+            "pitch": 1.2
         },
         {
             "nextKey": 7,
@@ -52,7 +53,8 @@
             "nextKey": 8,
             "name": "Benjamin",
             "text": "Hmmm I'll think about it. Either way we are going to make that prick pay for his betrayal!",
-            "startDelay": 1
+            "startDelay": 1,
+            "pitch": 1
         },
         {
             "nextKey": 9,

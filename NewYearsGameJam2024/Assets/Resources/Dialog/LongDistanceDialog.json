@@ -3,7 +3,7 @@
         {
             "nextKey": -1,
             "name": "Valerie",
-            "text": "Hey umm... can you get me to... 36 carfet please.",
+            "text": "Hey umm... can you get me to... 36 Carfet please.",
             "startDelay": 1,
             "pitch": 2
         },
@@ -17,54 +17,68 @@
         {
             "nextKey": 3,
             "name": "Max",
-            "text": "HEY VAL! Do not apologize, I missed you so much. Sorry I haven’t been able to phone as often because of work.",
+            "text": "HEY VAL! Do not apologize, I missed you so much.",
             "startDelay": 0,
             "pitch": 0.9
         },
         {
             "nextKey": 4,
+            "name": "Max",
+            "text": "Sorry I haven’t been able to phone as often because of work.",
+            "startDelay": 0,
+            "pitch": 0.9
+        },
+        {
+            "nextKey": 5,
             "name": "Valerie",
             "text": "Don't even worry my love, I understand. But guess what happened today!",
             "startDelay": 1,
             "pitch": 2
         },
         {
-            "nextKey": 5,
+            "nextKey": 6,
             "name": "Max",
             "text": "Don't tell me, is it Beth and her rumours again?",
             "startDelay": 1,
             "pitch": 0.9
         },
         {
-            "nextKey": 6,
+            "nextKey": 7,
             "name": "Valerie",
-            "text": "Yup! Maybe you can convince her that she is just imagining things, like the incident with James' store!",
+            "text": "Yup! Maybe you can convince her that she is just imagining things...",
             "startDelay": 1,
             "pitch": 2
         },
         {
-            "nextKey": 7,
-            "name": "Max",
-            "text": "Haha I could never. At least she has moved past the her neighbors being spies.",
-            "startDelay": 1,
-            "pitch": 0.9
-        },
-        {
             "nextKey": 8,
             "name": "Valerie",
-            "text": "Seriously! Like what spies make cake?",
+            "text": "Like the incident with James' store!",
             "startDelay": 1,
             "pitch": 2
         },
         {
             "nextKey": 9,
             "name": "Max",
-            "text": "Oop, Val sorry my job is trying to reach me right now! I can call you back in a bit though?",
+            "text": "Haha I could never. At least she has moved past the her neighbors being spies.",
             "startDelay": 1,
             "pitch": 0.9
         },
         {
             "nextKey": 10,
+            "name": "Valerie",
+            "text": "Seriously! Like what spies make cake?",
+            "startDelay": 1,
+            "pitch": 2
+        },
+        {
+            "nextKey": 11,
+            "name": "Max",
+            "text": "Oop, Val sorry my job is trying to reach me right now! I can call you back in a bit though?",
+            "startDelay": 1,
+            "pitch": 0.9
+        },
+        {
+            "nextKey": 12,
             "name": "Valerie",
             "text": "No worries honey! I'll be waiting here for you. I love you Maxy!",
             "startDelay": 1,
