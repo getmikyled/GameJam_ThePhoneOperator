@@ -68,10 +68,16 @@ namespace IvoryIcicles
         {
             if (elapsedTime >= incomingCallInterval && hasPublishedCall == false)
             {
+                if (callIndex >= callInfos.Length)
+                {
+                    StartCoroutine(DialogController.controller.EndGame());
+                    hasPublishedCall = true;
+                    return;
+                }
                 try
                 {
                     Call newCall = TryPublishNewCall();
-                    if (newCall != null && callIndex < callInfos.Length)
+                    if (newCall != null)
                     {
                         print($"{newCall.emisorId}, {newCall.receptorId}");
                         hasPublishedCall = true;

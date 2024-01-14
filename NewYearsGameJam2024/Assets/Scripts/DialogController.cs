@@ -137,5 +137,16 @@ namespace IvoryIcicles.Dialog
 
             dialogText.text = DISCONNECT_TEXT;
         }
-    }   
+
+        ///-//////////////////////////////////////////////////////////////////
+        ///
+        public IEnumerator EndGame()
+        {
+            isTyping = false;
+
+            yield return new WaitForSeconds(1);
+
+            dialogText.text = "Thank you for playing!";
+        }
+    }
 }

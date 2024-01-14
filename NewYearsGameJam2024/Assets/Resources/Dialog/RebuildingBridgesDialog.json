@@ -59,7 +59,14 @@
         {
             "nextKey": 9,
             "name": "Sarah",
-            "text": "Rebecca, look. If you wanted to be in your niece and nephew’s life, you shouldn't have waited this long.",
+            "text": "Rebecca, look. If you wanted to be in your niece and nephew’s life.",
+            "startDelay": 2,
+            "pitch": 1.5
+        },
+        {
+            "nextKey": 10,
+            "name": "Sarah",
+            "text": "You shouldn't have waited this long.",
             "startDelay": 2,
             "pitch": 1.5
         },
